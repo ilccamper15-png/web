@@ -206,6 +206,39 @@
             height: 18px;
         }
 
+        .meal-plan {
+            background: #fff8f0;
+            border-left: 4px solid #ff8c42;
+            padding: 16px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .meal-day {
+            margin-bottom: 20px;
+            background: #f5f5f5;
+            padding: 12px;
+            border-radius: 6px;
+        }
+
+        .meal-day h4 {
+            color: #667eea;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        .meal-section {
+            margin: 8px 0;
+            padding-left: 10px;
+            border-left: 2px solid #667eea;
+        }
+
+        .meal-section strong {
+            color: #555;
+        }
+
         .input-area {
             padding: 15px;
             border-top: 1px solid #e0e0e0;
@@ -278,31 +311,6 @@
                 transform: translateY(-10px);
                 opacity: 1;
             }
-        }
-
-        .quick-actions {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            margin-top: 15px;
-        }
-
-        .quick-btn {
-            padding: 10px;
-            background: #f0f0f0;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: 500;
-            color: #555;
-            transition: all 0.3s;
-        }
-
-        .quick-btn:hover {
-            background: #667eea;
-            color: white;
-            border-color: #667eea;
         }
 
         @media (max-width: 768px) {
@@ -465,6 +473,184 @@
 
         function generateLocalResponse(userMessage) {
             const lowerMessage = userMessage.toLowerCase();
+
+            // Meal Plan Response
+            if (lowerMessage.includes('make me a meal plan')) {
+                return `Alright! Here's your 7-day meal plan to fuel your body and level up your game:
+
+<div class="meal-plan">
+<div class="meal-day">
+<h4>📅 Day 1</h4>
+<div class="meal-section">
+<strong>Breakfast:</strong><br/>
+□ Oatmeal with milk, banana, berries, and peanut butter<br/>
+□ 2 eggs
+</div>
+<div class="meal-section">
+<strong>Snack:</strong><br/>
+□ Greek yogurt + granola
+</div>
+<div class="meal-section">
+<strong>Lunch:</strong><br/>
+□ Chicken rice bowl: Grilled chicken, Brown rice, Vegetables, Avocado
+</div>
+<div class="meal-section">
+<strong>Pre-Practice Snack:</strong><br/>
+□ Banana + peanut butter toast
+</div>
+<div class="meal-section">
+<strong>Dinner:</strong><br/>
+□ Salmon, Sweet potato, Broccoli, Milk
+</div>
+</div>
+
+<div class="meal-day">
+<h4>📅 Day 2</h4>
+<div class="meal-section">
+<strong>Breakfast:</strong><br/>
+□ Whole grain toast, Scrambled eggs, Fruit smoothie
+</div>
+<div class="meal-section">
+<strong>Snack:</strong><br/>
+□ Trail mix + fruit
+</div>
+<div class="meal-section">
+<strong>Lunch:</strong><br/>
+□ Turkey sandwich: Whole grain bread, Turkey, Cheese, Vegetables, Side fruit
+</div>
+<div class="meal-section">
+<strong>Pre-Practice Snack:</strong><br/>
+□ Applesauce + granola bar
+</div>
+<div class="meal-section">
+<strong>Dinner:</strong><br/>
+□ Beef or chicken tacos: Lean protein, Tortillas, Beans, Vegetables
+</div>
+</div>
+
+<div class="meal-day">
+<h4>📅 Day 3</h4>
+<div class="meal-section">
+<strong>Breakfast:</strong><br/>
+□ Greek yogurt parfait: Yogurt, Fruit, Granola, Nuts
+</div>
+<div class="meal-section">
+<strong>Snack:</strong><br/>
+□ Cheese stick + crackers
+</div>
+<div class="meal-section">
+<strong>Lunch:</strong><br/>
+□ Pasta with: Lean meat sauce, Vegetables, Side salad
+</div>
+<div class="meal-section">
+<strong>Pre-Practice Snack:</strong><br/>
+□ Peanut butter sandwich
+</div>
+<div class="meal-section">
+<strong>Dinner:</strong><br/>
+□ Chicken stir fry: Chicken, Rice, Mixed vegetables
+</div>
+</div>
+
+<div class="meal-day">
+<h4>📅 Day 4</h4>
+<div class="meal-section">
+<strong>Breakfast:</strong><br/>
+□ Breakfast burrito: Eggs, Cheese, Beans, Salsa, Tortilla
+</div>
+<div class="meal-section">
+<strong>Snack:</strong><br/>
+□ Smoothie: Milk, Banana, Protein source, Berries
+</div>
+<div class="meal-section">
+<strong>Lunch:</strong><br/>
+□ Tuna/chicken salad wrap, Fruit
+</div>
+<div class="meal-section">
+<strong>Pre-Practice Snack:</strong><br/>
+□ Pretzels + sports drink (if intense training)
+</div>
+<div class="meal-section">
+<strong>Dinner:</strong><br/>
+□ Turkey meatballs, Pasta, Vegetables
+</div>
+</div>
+
+<div class="meal-day">
+<h4>📅 Day 5</h4>
+<div class="meal-section">
+<strong>Breakfast:</strong><br/>
+□ Pancakes or waffles, Eggs, Fruit
+</div>
+<div class="meal-section">
+<strong>Snack:</strong><br/>
+□ Nuts + fruit
+</div>
+<div class="meal-section">
+<strong>Lunch:</strong><br/>
+□ Chicken quesadilla, Vegetables, Yogurt
+</div>
+<div class="meal-section">
+<strong>Pre-Practice Snack:</strong><br/>
+□ Banana + granola bar
+</div>
+<div class="meal-section">
+<strong>Dinner:</strong><br/>
+□ Burger bowl: Lean beef/turkey burger, Potatoes, Vegetables
+</div>
+</div>
+
+<div class="meal-day">
+<h4>📅 Day 6</h4>
+<div class="meal-section">
+<strong>Breakfast:</strong><br/>
+□ Oatmeal, Eggs, Fruit
+</div>
+<div class="meal-section">
+<strong>Snack:</strong><br/>
+□ Smoothie
+</div>
+<div class="meal-section">
+<strong>Lunch:</strong><br/>
+□ Burrito bowl: Chicken, Rice, Beans, Salsa, Cheese
+</div>
+<div class="meal-section">
+<strong>Pre-Practice Snack:</strong><br/>
+□ Toast with honey
+</div>
+<div class="meal-section">
+<strong>Dinner:</strong><br/>
+□ Grilled chicken, Rice, Vegetables
+</div>
+</div>
+
+<div class="meal-day">
+<h4>📅 Day 7</h4>
+<div class="meal-section">
+<strong>Breakfast:</strong><br/>
+□ French toast, Fruit, Yogurt
+</div>
+<div class="meal-section">
+<strong>Snack:</strong><br/>
+□ Protein bar or peanut butter snack
+</div>
+<div class="meal-section">
+<strong>Lunch:</strong><br/>
+□ Pasta salad: Pasta, Chicken, Vegetables, Olive oil dressing
+</div>
+<div class="meal-section">
+<strong>Pre-Practice Snack:</strong><br/>
+□ Fruit + crackers
+</div>
+<div class="meal-section">
+<strong>Dinner:</strong><br/>
+□ Steak or tofu, Potatoes, Vegetables
+</div>
+</div>
+</div>
+
+This plan is designed to keep you energized before practice, help you recover after, and support your overall athletic performance. Drink plenty of water throughout the day—at least 2-3 liters! 💪`;
+            }
 
             // Workout responses
             if (lowerMessage.includes('workout') || lowerMessage.includes('exercise') || lowerMessage.includes('training')) {
