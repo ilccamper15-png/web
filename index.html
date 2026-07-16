@@ -216,27 +216,69 @@
             line-height: 1.8;
         }
 
-        .meal-day {
-            margin-bottom: 20px;
+        .fitness-plan {
+            background: #f0fff4;
+            border-left: 4px solid #22c55e;
+            padding: 16px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .meal-day,
+        .fitness-day {
+            margin-bottom: 18px;
             background: #f5f5f5;
             padding: 12px;
             border-radius: 6px;
         }
 
-        .meal-day h4 {
+        .meal-day h4,
+        .fitness-day h4 {
             color: #667eea;
             margin-bottom: 8px;
             font-size: 15px;
+            font-weight: 600;
         }
 
-        .meal-section {
+        .fitness-day h4 {
+            color: #22c55e;
+        }
+
+        .meal-section,
+        .fitness-section {
             margin: 8px 0;
             padding-left: 10px;
             border-left: 2px solid #667eea;
         }
 
-        .meal-section strong {
+        .fitness-section {
+            border-left-color: #22c55e;
+        }
+
+        .meal-section strong,
+        .fitness-section strong {
             color: #555;
+        }
+
+        .fitness-exercise {
+            margin: 6px 0;
+            padding-left: 5px;
+            font-size: 13px;
+        }
+
+        .daily-habits {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 12px 16px;
+            border-radius: 6px;
+            margin-top: 10px;
+            font-size: 13px;
+        }
+
+        .daily-habits strong {
+            color: #92400e;
         }
 
         .input-area {
@@ -473,6 +515,101 @@
 
         function generateLocalResponse(userMessage) {
             const lowerMessage = userMessage.toLowerCase();
+
+            // Fitness Plan Response
+            if (lowerMessage.includes('make me a fitness plan')) {
+                return `Perfect! Here's your complete 7-day fitness plan to dominate and get in peak shape:
+
+<div class="fitness-plan">
+<p style="font-weight: bold; color: #22c55e; margin-bottom: 10px;">📋 WEEKLY FITNESS PLAN (7 Days)</p>
+
+<div class="fitness-day">
+<h4>🏋️ Day 1 — Strength (Full Body)</h4>
+<div class="fitness-section">
+<div class="fitness-exercise">□ Squats — 3 × 8–12</div>
+<div class="fitness-exercise">□ Push-ups or bench press — 3 × 8–12</div>
+<div class="fitness-exercise">□ Rows (dumbbell/cable/band) — 3 × 10–12</div>
+<div class="fitness-exercise">□ Romanian deadlifts — 3 × 8–12</div>
+<div class="fitness-exercise">□ Plank — 3 × 30–60 seconds</div>
+</div>
+</div>
+
+<div class="fitness-day">
+<h4>🏃 Day 2 — Cardio + Mobility</h4>
+<div class="fitness-section">
+<div class="fitness-exercise">□ 30–45 minutes: brisk walking, cycling, jogging, or swimming</div>
+<div class="fitness-exercise">□ 10 minutes stretching:</div>
+<div class="fitness-exercise" style="margin-left: 20px;">• Hip flexors</div>
+<div class="fitness-exercise" style="margin-left: 20px;">• Hamstrings</div>
+<div class="fitness-exercise" style="margin-left: 20px;">• Chest</div>
+<div class="fitness-exercise" style="margin-left: 20px;">• Shoulders</div>
+</div>
+</div>
+
+<div class="fitness-day">
+<h4>💪 Day 3 — Strength (Upper Body Focus)</h4>
+<div class="fitness-section">
+<div class="fitness-exercise">□ Overhead press — 3 × 8–10</div>
+<div class="fitness-exercise">□ Pull-ups or lat pulldowns — 3 × 8–12</div>
+<div class="fitness-exercise">□ Dumbbell chest press — 3 × 10</div>
+<div class="fitness-exercise">□ Bicep curls — 2 × 12–15</div>
+<div class="fitness-exercise">□ Tricep extensions — 2 × 12–15</div>
+<div class="fitness-exercise">□ Core: dead bugs or leg raises — 3 sets</div>
+</div>
+</div>
+
+<div class="fitness-day">
+<h4>☀️ Day 4 — Rest or Active Recovery</h4>
+<div class="fitness-section">
+<div class="fitness-exercise">□ Easy walk</div>
+<div class="fitness-exercise">□ Light stretching</div>
+<div class="fitness-exercise">□ Mobility work</div>
+</div>
+</div>
+
+<div class="fitness-day">
+<h4>🦵 Day 5 — Strength (Lower Body Focus)</h4>
+<div class="fitness-section">
+<div class="fitness-exercise">□ Squats or leg press — 3 × 8–12</div>
+<div class="fitness-exercise">□ Lunges — 3 × 10 each leg</div>
+<div class="fitness-exercise">□ Deadlifts — 3 × 6–10</div>
+<div class="fitness-exercise">□ Calf raises — 3 × 12–15</div>
+<div class="fitness-exercise">□ Core: side plank — 3 × 30 seconds each side</div>
+</div>
+</div>
+
+<div class="fitness-day">
+<h4>⚡ Day 6 — Conditioning</h4>
+<div class="fitness-section">
+<div class="fitness-exercise">Choose one:</div>
+<div class="fitness-exercise" style="margin-left: 10px;">Option A: 45–60 minute easy cardio</div>
+<div class="fitness-exercise" style="margin-left: 10px;">Option B: Intervals:</div>
+<div class="fitness-exercise" style="margin-left: 30px;">• 5 min warm-up</div>
+<div class="fitness-exercise" style="margin-left: 30px;">• 8 rounds: 30 sec hard + 90 sec easy</div>
+<div class="fitness-exercise" style="margin-left: 30px;">• 5 min cool-down</div>
+</div>
+</div>
+
+<div class="fitness-day">
+<h4>😴 Day 7 — Rest</h4>
+<div class="fitness-section">
+<div class="fitness-exercise">□ Complete rest or light stretching</div>
+<div class="fitness-exercise">□ Focus on recovery</div>
+</div>
+</div>
+
+<div class="daily-habits">
+<p><strong>📌 DAILY HABITS TO FOLLOW:</strong></p>
+<p>□ <strong>Protein:</strong> Include a protein source at each meal</p>
+<p>□ <strong>Water:</strong> Aim for steady hydration throughout the day</p>
+<p>□ <strong>Sleep:</strong> Target 7–9 hours</p>
+<p>□ <strong>Steps:</strong> Aim for 7,000–10,000 daily if possible</p>
+<p>□ <strong>Progress:</strong> Increase weight, reps, or duration gradually each week</p>
+</div>
+</div>
+
+This is a balanced program designed to build strength, improve conditioning, and keep you healthy. Stick with it for 4-6 weeks and you'll see massive improvements! Remember—consistency is key. Let's get you to the next level! 🚀`;
+            }
 
             // Meal Plan Response
             if (lowerMessage.includes('make me a meal plan')) {
