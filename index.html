@@ -214,6 +214,7 @@
             margin: 10px 0;
             font-size: 14px;
             line-height: 1.8;
+            white-space: pre-line;
         }
 
         .fitness-plan {
@@ -497,6 +498,209 @@
 
     <script>
         let conversationHistory = [];
+        const soccerMealPlan = `Since I know you're training a lot for soccer, here's a high-protein, athlete-friendly meal plan that keeps carbs moderate (not excessive) while giving you enough fuel for practices and recovery.
+
+⚽ 7-Day Soccer Meal Plan
+📅 Day 1
+Breakfast
+
+☐ 3 scrambled eggs
+☐ Greek yogurt with blueberries
+☐ ½ avocado
+
+Snack
+
+☐ Cheese stick
+☐ Handful of almonds
+
+Lunch
+
+☐ Grilled chicken breast
+☐ Broccoli
+☐ Side salad with olive oil
+
+Pre-Practice Snack
+
+☐ Apple + peanut butter
+
+Dinner
+
+☐ Salmon
+☐ Roasted asparagus
+☐ Green beans
+
+📅 Day 2
+Breakfast
+
+☐ Omelet with cheese and spinach
+☐ Greek yogurt
+
+Snack
+
+☐ Mixed nuts
+
+Lunch
+
+☐ Turkey lettuce wraps
+☐ Cheese
+☐ Cucumber
+
+Pre-Practice Snack
+
+☐ Banana
+
+Dinner
+
+☐ Lean steak
+☐ Broccoli
+☐ Side salad
+
+📅 Day 3
+Breakfast
+
+☐ Eggs
+☐ Cottage cheese
+☐ Strawberries
+
+Snack
+
+☐ Beef jerky
+
+Lunch
+
+☐ Grilled chicken Caesar salad (light dressing)
+
+Pre-Practice Snack
+
+☐ Greek yogurt
+
+Dinner
+
+☐ Chicken stir fry
+☐ Bell peppers
+☐ Mushrooms
+☐ Broccoli
+
+📅 Day 4
+Breakfast
+
+☐ Scrambled eggs
+☐ Turkey sausage
+☐ Avocado
+
+Snack
+
+☐ Protein shake
+
+Lunch
+
+☐ Tuna salad
+☐ Mixed greens
+
+Pre-Practice Snack
+
+☐ Cheese stick
+
+Dinner
+
+☐ Turkey burgers (no bun)
+☐ Roasted vegetables
+
+📅 Day 5
+Breakfast
+
+☐ Greek yogurt
+☐ Walnuts
+☐ Berries
+
+Snack
+
+☐ Hard-boiled eggs
+
+Lunch
+
+☐ Chicken breast
+☐ Salad
+☐ Avocado
+
+Pre-Practice Snack
+
+☐ Apple
+
+Dinner
+
+☐ Lean beef
+☐ Brussels sprouts
+☐ Cauliflower
+
+📅 Day 6
+Breakfast
+
+☐ 3 eggs
+☐ Cheese
+☐ Greek yogurt
+
+Snack
+
+☐ Almonds
+
+Lunch
+
+☐ Chicken taco bowl
+☐ Lettuce
+☐ Cheese
+☐ Salsa
+☐ Guacamole
+
+Pre-Practice Snack
+
+☐ Peanut butter
+
+Dinner
+
+☐ Grilled salmon
+☐ Broccoli
+☐ Zucchini
+
+📅 Day 7
+Breakfast
+
+☐ Omelet
+☐ Cheese
+☐ Spinach
+
+Snack
+
+☐ Protein shake
+
+Lunch
+
+☐ Steak salad
+☐ Olive oil dressing
+
+Pre-Practice Snack
+
+☐ Mixed nuts
+
+Dinner
+
+☐ Grilled chicken
+☐ Green beans
+☐ Side salad
+
+💧 Daily Hydration
+☐ Drink water throughout the day.
+☐ Drink extra water before, during, and after practice.
+☐ If practice lasts over an hour or is especially intense, consider a sports drink to replace electrolytes.
+🍎 Healthy Snacks (Any Time)
+Greek yogurt
+Cheese sticks
+Hard-boiled eggs
+Beef jerky
+Almonds, walnuts, or pistachios
+Peanut butter
+Cottage cheese
+Celery or cucumber with hummus`;
 
         // Attach event listeners after DOM is loaded
         document.getElementById('userInput').addEventListener('keypress', function(event) {
@@ -571,8 +775,8 @@
                 return 'Let\'s get you strong! What\'s your goal - strength training, cardio, flexibility, or a mix? I can give you a personalized routine!';
             }
 
-            if (msg.includes('nutrition') || msg.includes('meal') || msg.includes('diet')) {
-                return 'Nutrition is key! Tell me more - are you looking for weight loss, muscle gain, or just eating healthier? I can create a meal plan for you!';
+            if (msg.includes('meal plan') || msg.includes('nutrition') || msg.includes('meal') || msg.includes('diet')) {
+                return `<div class="meal-plan">${soccerMealPlan}</div>`;
             }
 
             return 'Great question! I can help with: fitness plans, low-carb diets, workout routines, nutrition advice, and building better habits. What would you like?';
