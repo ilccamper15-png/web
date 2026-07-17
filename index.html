@@ -552,6 +552,192 @@
         function generateLocalResponse(userMessage) {
             const lowerMessage = userMessage.toLowerCase();
 
+            // Meal plan with low carbs
+            if (lowerMessage.includes('make the meal plan have low carbs')) {
+                return `If your goal is very low-carb, here's a version that keeps the protein high while replacing the bread, rice, pasta, potatoes, oats, granola, tortillas, and sugary snacks.
+
+<div class="low-carb-plan">
+<div class="low-carb-meal-section">
+<h4>📅 Day 1</h4>
+<strong>Breakfast</strong>
+<div class="low-carb-item">☐ 3 eggs scrambled with cheese</div>
+<div class="low-carb-item">☐ Greek yogurt (plain) with berries</div>
+<div class="low-carb-item">☐ Peanut butter</div>
+
+<strong>Snack</strong>
+<div class="low-carb-item">☐ Greek yogurt + almonds</div>
+
+<strong>Lunch</strong>
+<div class="low-carb-item">☐ Grilled chicken</div>
+<div class="low-carb-item">☐ Avocado</div>
+<div class="low-carb-item">☐ Broccoli or mixed vegetables</div>
+
+<strong>Pre-Practice Snack</strong>
+<div class="low-carb-item">☐ Cheese stick + peanut butter</div>
+
+<strong>Dinner</strong>
+<div class="low-carb-item">☐ Salmon</div>
+<div class="low-carb-item">☐ Broccoli</div>
+<div class="low-carb-item">☐ Asparagus</div>
+<div class="low-carb-item">☐ Side salad</div>
+</div>
+
+<div class="low-carb-meal-section">
+<h4>📅 Day 2</h4>
+<strong>Breakfast</strong>
+<div class="low-carb-item">☐ Scrambled eggs</div>
+<div class="low-carb-item">☐ Bacon or turkey sausage</div>
+<div class="low-carb-item">☐ Avocado</div>
+
+<strong>Snack</strong>
+<div class="low-carb-item">☐ Mixed nuts</div>
+
+<strong>Lunch</strong>
+<div class="low-carb-item">☐ Turkey lettuce wraps</div>
+<div class="low-carb-item">☐ Cheese</div>
+<div class="low-carb-item">☐ Vegetables</div>
+
+<strong>Pre-Practice Snack</strong>
+<div class="low-carb-item">☐ Beef jerky + cheese</div>
+
+<strong>Dinner</strong>
+<div class="low-carb-item">☐ Beef or chicken taco bowl</div>
+<div class="low-carb-item">☐ Ground meat</div>
+<div class="low-carb-item">☐ Cheese</div>
+<div class="low-carb-item">☐ Lettuce</div>
+<div class="low-carb-item">☐ Salsa</div>
+<div class="low-carb-item">☐ Guacamole</div>
+</div>
+
+<div class="low-carb-meal-section">
+<h4>📅 Day 3</h4>
+<strong>Breakfast</strong>
+<div class="low-carb-item">☐ Greek yogurt</div>
+<div class="low-carb-item">☐ Walnuts</div>
+<div class="low-carb-item">☐ Berries</div>
+
+<strong>Snack</strong>
+<div class="low-carb-item">☐ Cheese stick</div>
+<div class="low-carb-item">☐ Almonds</div>
+
+<strong>Lunch</strong>
+<div class="low-carb-item">☐ Lean meatballs</div>
+<div class="low-carb-item">☐ Zucchini noodles</div>
+<div class="low-carb-item">☐ Side salad</div>
+
+<strong>Pre-Practice Snack</strong>
+<div class="low-carb-item">☐ Hard-boiled eggs</div>
+
+<strong>Dinner</strong>
+<div class="low-carb-item">☐ Chicken stir fry</div>
+<div class="low-carb-item">☐ Broccoli</div>
+<div class="low-carb-item">☐ Bell peppers</div>
+<div class="low-carb-item">☐ Mushrooms</div>
+</div>
+
+<div class="low-carb-meal-section">
+<h4>📅 Day 4</h4>
+<strong>Breakfast</strong>
+<div class="low-carb-item">☐ Omelet with eggs, cheese, spinach, and salsa</div>
+
+<strong>Snack</strong>
+<div class="low-carb-item">☐ Protein shake (low sugar)</div>
+
+<strong>Lunch</strong>
+<div class="low-carb-item">☐ Tuna or chicken salad</div>
+<div class="low-carb-item">☐ Lettuce wraps</div>
+
+<strong>Pre-Practice Snack</strong>
+<div class="low-carb-item">☐ Cheese + turkey slices</div>
+
+<strong>Dinner</strong>
+<div class="low-carb-item">☐ Turkey meatballs</div>
+<div class="low-carb-item">☐ Roasted cauliflower</div>
+<div class="low-carb-item">☐ Green beans</div>
+</div>
+
+<div class="low-carb-meal-section">
+<h4>📅 Day 5</h4>
+<strong>Breakfast</strong>
+<div class="low-carb-item">☐ Eggs</div>
+<div class="low-carb-item">☐ Bacon</div>
+<div class="low-carb-item">☐ Greek yogurt</div>
+
+<strong>Snack</strong>
+<div class="low-carb-item">☐ Pecans or walnuts</div>
+
+<strong>Lunch</strong>
+<div class="low-carb-item">☐ Chicken with vegetables</div>
+<div class="low-carb-item">☐ Greek yogurt</div>
+
+<strong>Pre-Practice Snack</strong>
+<div class="low-carb-item">☐ Beef jerky</div>
+
+<strong>Dinner</strong>
+<div class="low-carb-item">☐ Burger bowl</div>
+<div class="low-carb-item">☐ Lean beef</div>
+<div class="low-carb-item">☐ Lettuce</div>
+<div class="low-carb-item">☐ Tomato</div>
+<div class="low-carb-item">☐ Cheese</div>
+<div class="low-carb-item">☐ Pickles</div>
+<div class="low-carb-item">☐ Avocado</div>
+</div>
+
+<div class="low-carb-meal-section">
+<h4>📅 Day 6</h4>
+<strong>Breakfast</strong>
+<div class="low-carb-item">☐ Eggs</div>
+<div class="low-carb-item">☐ Cheese</div>
+<div class="low-carb-item">☐ Avocado</div>
+
+<strong>Snack</strong>
+<div class="low-carb-item">☐ Protein smoothie (unsweetened almond milk + protein powder)</div>
+
+<strong>Lunch</strong>
+<div class="low-carb-item">☐ Burrito bowl</div>
+<div class="low-carb-item">☐ Chicken</div>
+<div class="low-carb-item">☐ Cheese</div>
+<div class="low-carb-item">☐ Lettuce</div>
+<div class="low-carb-item">☐ Salsa</div>
+<div class="low-carb-item">☐ Guacamole</div>
+
+<strong>Pre-Practice Snack</strong>
+<div class="low-carb-item">☐ Turkey slices + cheese</div>
+
+<strong>Dinner</strong>
+<div class="low-carb-item">☐ Grilled chicken</div>
+<div class="low-carb-item">☐ Broccoli</div>
+<div class="low-carb-item">☐ Cauliflower</div>
+</div>
+
+<div class="low-carb-meal-section">
+<h4>📅 Day 7</h4>
+<strong>Breakfast</strong>
+<div class="low-carb-item">☐ Eggs</div>
+<div class="low-carb-item">☐ Greek yogurt</div>
+<div class="low-carb-item">☐ Berries</div>
+
+<strong>Snack</strong>
+<div class="low-carb-item">☐ Protein bar (low-carb) or peanut butter</div>
+
+<strong>Lunch</strong>
+<div class="low-carb-item">☐ Chicken salad</div>
+<div class="low-carb-item">☐ Olive oil dressing</div>
+<div class="low-carb-item">☐ Mixed vegetables</div>
+
+<strong>Pre-Practice Snack</strong>
+<div class="low-carb-item">☐ Cheese + nuts</div>
+
+<strong>Dinner</strong>
+<div class="low-carb-item">☐ Steak or tofu</div>
+<div class="low-carb-item">☐ Roasted Brussels sprouts</div>
+<div class="low-carb-item">☐ Side salad</div>
+</div>
+</div>
+
+This plan keeps your carbs under 50g per day while staying super high in protein. You'll stay full, energized, and lean. No bread, rice, pasta, or junk—just clean proteins, healthy fats, and veggies. This is the real deal! 💪`;
+            }
+
             // Low Carb Response
             if (lowerMessage.includes('low carb')) {
                 return `Okay! Here's A Low Carb Diet! (7 Day)
