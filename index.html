@@ -497,7 +497,207 @@
 
     <script>
         let conversationHistory = [];
-        const MEAL_PLAN_RESPONSE = `<div class="meal-plan">📅 Day 1<br>Breakfast<br><br>☐ 3 scrambled eggs<br>☐ Greek yogurt with blueberries<br>☐ ½ avocado<br><br>Snack<br><br>☐ Cheese stick<br>☐ Handful of almonds<br><br>Lunch<br><br>☐ Grilled chicken breast<br>☐ Broccoli<br>☐ Side salad with olive oil<br><br>Pre-Practice Snack<br><br>☐ Apple + peanut butter<br><br>Dinner<br><br>☐ Salmon<br>☐ Roasted asparagus<br>☐ Green beans<br><br>📅 Day 2<br>Breakfast<br><br>☐ Omelet with cheese and spinach<br>☐ Greek yogurt<br><br>Snack<br><br>☐ Mixed nuts<br><br>Lunch<br><br>☐ Turkey lettuce wraps<br>☐ Cheese<br>☐ Cucumber<br><br>Pre-Practice Snack<br><br>☐ Banana<br><br>Dinner<br><br>☐ Lean steak<br>☐ Broccoli<br>☐ Side salad<br><br>📅 Day 3<br>Breakfast<br><br>☐ Eggs<br>☐ Cottage cheese<br>☐ Strawberries<br><br>Snack<br><br>☐ Beef jerky<br><br>Lunch<br><br>☐ Grilled chicken Caesar salad (light dressing)<br><br>Pre-Practice Snack<br><br>☐ Greek yogurt<br><br>Dinner<br><br>☐ Chicken stir fry<br>☐ Bell peppers<br>☐ Mushrooms<br>☐ Broccoli<br><br>📅 Day 4<br>Breakfast<br><br>☐ Scrambled eggs<br>☐ Turkey sausage<br>☐ Avocado<br><br>Snack<br><br>☐ Protein shake<br><br>Lunch<br><br>☐ Tuna salad<br>☐ Mixed greens<br><br>Pre-Practice Snack<br><br>☐ Cheese stick<br><br>Dinner<br><br>☐ Turkey burgers (no bun)<br>☐ Roasted vegetables<br><br>📅 Day 5<br>Breakfast<br><br>☐ Greek yogurt<br>☐ Walnuts<br>☐ Berries<br><br>Snack<br><br>☐ Hard-boiled eggs<br><br>Lunch<br><br>☐ Chicken breast<br>☐ Salad<br>☐ Avocado<br><br>Pre-Practice Snack<br><br>☐ Apple<br><br>Dinner<br><br>☐ Lean beef<br>☐ Brussels sprouts<br>☐ Cauliflower<br><br>📅 Day 6<br>Breakfast<br><br>☐ 3 eggs<br>☐ Cheese<br>☐ Greek yogurt<br><br>Snack<br><br>☐ Almonds<br><br>Lunch<br><br>☐ Chicken taco bowl<br>☐ Lettuce<br>☐ Cheese<br>☐ Salsa<br>☐ Guacamole<br><br>Pre-Practice Snack<br><br>☐ Peanut butter<br><br>Dinner<br><br>☐ Grilled salmon<br>☐ Broccoli<br>☐ Zucchini<br><br>📅 Day 7<br>Breakfast<br><br>☐ Omelet<br>☐ Cheese<br>☐ Spinach<br><br>Snack<br><br>☐ Protein shake<br><br>Lunch<br><br>☐ Steak salad<br>☐ Olive oil dressing<br><br>Pre-Practice Snack<br><br>☐ Mixed nuts<br><br>Dinner<br><br>☐ Grilled chicken<br>☐ Green beans<br>☐ Side salad<br><br>💧 Daily Hydration<br>☐ Drink water throughout the day.<br>☐ Drink extra water before, during, and after practice.<br>☐ If practice lasts over an hour or is especially intense, consider a sports drink to replace electrolytes.<br>🍎 Healthy Snacks (Any Time)<br>Greek yogurt<br>Cheese sticks<br>Hard-boiled eggs<br>Beef jerky<br>Almonds, walnuts, or pistachios<br>Peanut butter<br>Cottage cheese<br>Celery or cucumber with hummus</div>`;
+        const MEAL_PLAN_TEXT = `📅 Day 1
+Breakfast
+
+☐ 3 scrambled eggs
+☐ Greek yogurt with blueberries
+☐ ½ avocado
+
+Snack
+
+☐ Cheese stick
+☐ Handful of almonds
+
+Lunch
+
+☐ Grilled chicken breast
+☐ Broccoli
+☐ Side salad with olive oil
+
+Pre-Practice Snack
+
+☐ Apple + peanut butter
+
+Dinner
+
+☐ Salmon
+☐ Roasted asparagus
+☐ Green beans
+
+📅 Day 2
+Breakfast
+
+☐ Omelet with cheese and spinach
+☐ Greek yogurt
+
+Snack
+
+☐ Mixed nuts
+
+Lunch
+
+☐ Turkey lettuce wraps
+☐ Cheese
+☐ Cucumber
+
+Pre-Practice Snack
+
+☐ Banana
+
+Dinner
+
+☐ Lean steak
+☐ Broccoli
+☐ Side salad
+
+📅 Day 3
+Breakfast
+
+☐ Eggs
+☐ Cottage cheese
+☐ Strawberries
+
+Snack
+
+☐ Beef jerky
+
+Lunch
+
+☐ Grilled chicken Caesar salad (light dressing)
+
+Pre-Practice Snack
+
+☐ Greek yogurt
+
+Dinner
+
+☐ Chicken stir fry
+☐ Bell peppers
+☐ Mushrooms
+☐ Broccoli
+
+📅 Day 4
+Breakfast
+
+☐ Scrambled eggs
+☐ Turkey sausage
+☐ Avocado
+
+Snack
+
+☐ Protein shake
+
+Lunch
+
+☐ Tuna salad
+☐ Mixed greens
+
+Pre-Practice Snack
+
+☐ Cheese stick
+
+Dinner
+
+☐ Turkey burgers (no bun)
+☐ Roasted vegetables
+
+📅 Day 5
+Breakfast
+
+☐ Greek yogurt
+☐ Walnuts
+☐ Berries
+
+Snack
+
+☐ Hard-boiled eggs
+
+Lunch
+
+☐ Chicken breast
+☐ Salad
+☐ Avocado
+
+Pre-Practice Snack
+
+☐ Apple
+
+Dinner
+
+☐ Lean beef
+☐ Brussels sprouts
+☐ Cauliflower
+
+📅 Day 6
+Breakfast
+
+☐ 3 eggs
+☐ Cheese
+☐ Greek yogurt
+
+Snack
+
+☐ Almonds
+
+Lunch
+
+☐ Chicken taco bowl
+☐ Lettuce
+☐ Cheese
+☐ Salsa
+☐ Guacamole
+
+Pre-Practice Snack
+
+☐ Peanut butter
+
+Dinner
+
+☐ Grilled salmon
+☐ Broccoli
+☐ Zucchini
+
+📅 Day 7
+Breakfast
+
+☐ Omelet
+☐ Cheese
+☐ Spinach
+
+Snack
+
+☐ Protein shake
+
+Lunch
+
+☐ Steak salad
+☐ Olive oil dressing
+
+Pre-Practice Snack
+
+☐ Mixed nuts
+
+Dinner
+
+☐ Grilled chicken
+☐ Green beans
+☐ Side salad
+
+💧 Daily Hydration
+☐ Drink water throughout the day.
+☐ Drink extra water before, during, and after practice.
+☐ If practice lasts over an hour or is especially intense, consider a sports drink to replace electrolytes.
+🍎 Healthy Snacks (Any Time)
+Greek yogurt
+Cheese sticks
+Hard-boiled eggs
+Beef jerky
+Almonds, walnuts, or pistachios
+Peanut butter
+Cottage cheese
+Celery or cucumber with hummus`;
+        const MEAL_PLAN_RESPONSE = `<div class="meal-plan">${MEAL_PLAN_TEXT.replace(/\n/g, '<br>')}</div>`;
 
         // Attach event listeners after DOM is loaded
         document.getElementById('userInput').addEventListener('keypress', function(event) {
