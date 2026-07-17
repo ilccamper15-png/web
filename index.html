@@ -497,7 +497,7 @@
 
     <script>
         let conversationHistory = [];
-        const MEAL_PLAN_TEXT = `📅 Day 1
+        const WEEKLY_MEAL_PLAN_TEXT = `📅 Day 1
 Breakfast
 
 ☐ 3 scrambled eggs
@@ -697,7 +697,6 @@ Almonds, walnuts, or pistachios
 Peanut butter
 Cottage cheese
 Celery or cucumber with hummus`;
-        const MEAL_PLAN_RESPONSE = `<div class="meal-plan">${MEAL_PLAN_TEXT.replace(/\n/g, '<br>')}</div>`;
 
         // Attach event listeners after DOM is loaded
         document.getElementById('userInput').addEventListener('keypress', function(event) {
@@ -761,7 +760,7 @@ Celery or cucumber with hummus`;
             const msg = userMessage.toLowerCase();
 
             if (msg.includes('meal plan')) {
-                return MEAL_PLAN_RESPONSE;
+                return `<div class="meal-plan">${WEEKLY_MEAL_PLAN_TEXT.replace(/\n/g, '<br>')}</div>`;
             }
 
             if (msg.includes('fitness plan')) {
