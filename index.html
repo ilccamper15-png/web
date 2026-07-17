@@ -498,6 +498,12 @@
 
     <script>
         let conversationHistory = [];
+
+        // Tracks what was last shared so follow-up messages can reference it
+        const conversationState = {
+            lastPlanType: null   // null | 'standard' | 'lowCarb'
+        };
+
         const soccerMealPlan = `Since I know you're training a lot for soccer, here's a high-protein, athlete-friendly meal plan that keeps carbs moderate (not excessive) while giving you enough fuel for practices and recovery.
 
 ⚽ 7-Day Soccer Meal Plan
@@ -702,6 +708,207 @@ Peanut butter
 Cottage cheese
 Celery or cucumber with hummus`;
 
+        const lowCarbMealPlan = `Here's your high-protein, low-carb meal plan — no bread, pasta, rice, or starchy carbs. All protein, healthy fats, and veggies to keep you fueled and lean.
+
+🥩 7-Day Low-Carb Meal Plan
+📅 Day 1
+Breakfast
+
+☐ 3 scrambled eggs
+☐ ½ avocado
+☐ Cheese
+
+Snack
+
+☐ Handful of almonds
+
+Lunch
+
+☐ Grilled chicken breast
+☐ Broccoli
+☐ Side salad with olive oil
+
+Pre-Practice Snack
+
+☐ Celery with peanut butter
+
+Dinner
+
+☐ Salmon
+☐ Roasted asparagus
+☐ Green beans
+
+📅 Day 2
+Breakfast
+
+☐ Omelet with cheese and spinach
+
+Snack
+
+☐ Mixed nuts
+
+Lunch
+
+☐ Turkey lettuce wraps
+☐ Cheese
+☐ Cucumber
+
+Pre-Practice Snack
+
+☐ String cheese
+
+Dinner
+
+☐ Lean steak
+☐ Broccoli
+☐ Side salad
+
+📅 Day 3
+Breakfast
+
+☐ Eggs
+☐ Cottage cheese
+☐ Strawberries
+
+Snack
+
+☐ Beef jerky
+
+Lunch
+
+☐ Grilled chicken Caesar salad (no croutons)
+
+Pre-Practice Snack
+
+☐ Greek yogurt (plain, unsweetened)
+
+Dinner
+
+☐ Chicken stir fry
+☐ Bell peppers
+☐ Mushrooms
+☐ Broccoli (cooked in olive oil, no sauce)
+
+📅 Day 4
+Breakfast
+
+☐ Scrambled eggs
+☐ Turkey sausage
+☐ Avocado
+
+Snack
+
+☐ Low-carb protein shake
+
+Lunch
+
+☐ Tuna salad
+☐ Mixed greens
+
+Pre-Practice Snack
+
+☐ Cheese stick
+
+Dinner
+
+☐ Turkey burgers (no bun)
+☐ Roasted zucchini and bell peppers
+
+📅 Day 5
+Breakfast
+
+☐ Greek yogurt (plain, unsweetened)
+☐ Walnuts
+☐ Mixed berries
+
+Snack
+
+☐ Hard-boiled eggs
+
+Lunch
+
+☐ Chicken breast
+☐ Large salad
+☐ Avocado
+
+Pre-Practice Snack
+
+☐ Almonds
+
+Dinner
+
+☐ Lean beef
+☐ Brussels sprouts
+☐ Cauliflower (roasted)
+
+📅 Day 6
+Breakfast
+
+☐ 3 eggs
+☐ Cheese
+
+Snack
+
+☐ Almonds
+
+Lunch
+
+☐ Chicken taco bowl (no rice)
+☐ Lettuce
+☐ Cheese
+☐ Salsa
+☐ Guacamole
+
+Pre-Practice Snack
+
+☐ Peanut butter (no crackers)
+
+Dinner
+
+☐ Grilled salmon
+☐ Broccoli
+☐ Zucchini
+
+📅 Day 7
+Breakfast
+
+☐ Omelet
+☐ Cheese
+☐ Spinach
+
+Snack
+
+☐ Low-carb protein shake
+
+Lunch
+
+☐ Steak salad
+☐ Olive oil dressing
+
+Pre-Practice Snack
+
+☐ Mixed nuts
+
+Dinner
+
+☐ Grilled chicken
+☐ Green beans
+☐ Side salad
+
+💧 Daily Hydration
+☐ Drink water throughout the day.
+☐ Drink extra water before, during, and after practice.
+☐ If practice lasts over an hour, consider a low-carb electrolyte drink.
+🥗 Low-Carb Snacks (Any Time)
+Hard-boiled eggs
+Cheese sticks
+Beef jerky
+Almonds, walnuts, or pistachios
+Peanut butter (no crackers)
+Celery or cucumber with cream cheese
+Greek yogurt (plain, unsweetened)
+Avocado`;
+
         // Attach event listeners after DOM is loaded
         document.getElementById('userInput').addEventListener('keypress', function(event) {
             if (event.key === 'Enter') {
@@ -761,14 +968,36 @@ Celery or cucumber with hummus`;
         }
 
         function generateResponse(userMessage) {
-            const msg = userMessage.toLowerCase();
+            const msg = userMessage.toLowerCase().trim();
+            conversationHistory.push({ role: 'user', content: userMessage });
 
+            // ── Phase 1: follow-up modifications to a previously shared meal plan ──
+            if (conversationState.lastPlanType !== null) {
+                const modification = detectMealPlanModification(msg);
+                if (modification) {
+                    return handleModification(modification);
+                }
+                // Detect generic follow-up phrasing that references the current plan
+                if (isFollowUpMessage(msg)) {
+                    const label = conversationState.lastPlanType === 'lowCarb' ? 'low-carb ' : '';
+                    return `Sure! I remember your ${label}meal plan. What would you like to change? You can say things like:<br><br>
+🚫 "no fish" or "no dairy"<br>
+🥦 "no carbs" or "make it low carb"<br>
+💪 "I want more protein"<br>
+🌱 "I'm vegetarian"<br>
+💰 "make it cheaper"`;
+                }
+            }
+
+            // ── Phase 2: original keyword matching ──
             if (msg.includes('fitness plan')) {
                 return 'Perfect! Here\'s your 7-day fitness plan: <strong>Day 1:</strong> Full body strength (Squats 3x8-12, Push-ups 3x8-12, Rows 3x10-12). <strong>Day 2:</strong> Cardio 45min + Stretching. <strong>Day 3:</strong> Upper body (Press, Pull-ups, Chest Press). <strong>Day 4:</strong> Rest day. <strong>Day 5:</strong> Lower body. <strong>Day 6:</strong> Conditioning. <strong>Day 7:</strong> Active recovery. Get after it! 💪';
             }
 
-            if (msg.includes('low carb')) {
-                return 'Great choice! Here\'s a low-carb diet: <strong>Breakfast:</strong> Eggs + cheese, Greek yogurt, peanut butter. <strong>Lunch:</strong> Grilled chicken + avocado + broccoli. <strong>Dinner:</strong> Salmon + vegetables. <strong>Snacks:</strong> Nuts, cheese, Greek yogurt. Stay under 50g carbs daily and you\'ll feel amazing!';
+            if (msg.includes('low carb') || msg.includes('no carb') || msg.includes('without carb') ||
+                msg.includes('remove carb') || msg.includes('cut carb') || msg.includes('less carb')) {
+                conversationState.lastPlanType = 'lowCarb';
+                return `<div class="meal-plan">${lowCarbMealPlan}</div>`;
             }
 
             if (msg.includes('workout') || msg.includes('exercise')) {
@@ -776,10 +1005,101 @@ Celery or cucumber with hummus`;
             }
 
             if (msg.includes('meal plan') || msg.includes('nutrition') || msg.includes('meal') || msg.includes('diet')) {
+                conversationState.lastPlanType = 'standard';
                 return `<div class="meal-plan">${soccerMealPlan}</div>`;
             }
 
             return 'Great question! I can help with: fitness plans, low-carb diets, workout routines, nutrition advice, and building better habits. What would you like?';
+        }
+
+        // Returns which type of modification the user is requesting
+        function detectMealPlanModification(msg) {
+            if (msg.includes('no carb') || msg.includes('low carb') || msg.includes('without carb') ||
+                msg.includes('remove carb') || msg.includes("don't want carb") || msg.includes('make it low') ||
+                msg.includes('less carb') || msg.includes('cut carb') || msg.includes('no bread') ||
+                msg.includes('no pasta') || msg.includes('no rice') || msg.includes('cut the carb')) {
+                return 'lowCarb';
+            }
+            if (msg.includes('no fish') || msg.includes("don't like fish") || msg.includes('hate fish') ||
+                msg.includes('not a fan of fish') || msg.includes('no seafood')) {
+                return 'noFish';
+            }
+            if (msg.includes('no dairy') || msg.includes("don't eat dairy") || msg.includes('dairy free') ||
+                msg.includes('dairy-free') || msg.includes('lactose')) {
+                return 'noDairy';
+            }
+            if (msg.includes('vegetarian') || msg.includes('no meat') || msg.includes('plant based') ||
+                msg.includes('plant-based') || msg.includes('vegan')) {
+                return 'vegetarian';
+            }
+            if (msg.includes('more protein') || msg.includes('higher protein') || msg.includes('extra protein') ||
+                msg.includes('want more protein') || msg.includes('increase protein')) {
+                return 'moreProtein';
+            }
+            if (msg.includes('cheaper') || msg.includes('budget') || msg.includes('affordable') ||
+                msg.includes('less expensive') || msg.includes('save money')) {
+                return 'budget';
+            }
+            return null;
+        }
+
+        // Returns true when the message likely refers back to the current plan
+        function isFollowUpMessage(msg) {
+            const phrases = [
+                'wait', 'actually', 'change ', 'modify', 'update ', 'instead',
+                'make it', "i don't", "i'm not", "i'm a", 'without ', 'remove ',
+                'add more', 'can you change', 'can you update', 'can you modify'
+            ];
+            return phrases.some(p => msg.includes(p));
+        }
+
+        // Builds a response for a detected plan modification
+        function handleModification(modification) {
+            const label = conversationState.lastPlanType === 'lowCarb' ? ' low-carb' : '';
+
+            if (modification === 'lowCarb') {
+                conversationState.lastPlanType = 'lowCarb';
+                return `No problem! I've removed the carbs. Here's your updated 7-day low-carb meal plan 🥩:<div class="meal-plan">${lowCarbMealPlan}</div>`;
+            }
+            if (modification === 'noFish') {
+                return `Got it — no fish! On any day with salmon or tuna, swap it out like this:<br><br>
+🐔 <strong>Salmon → Grilled chicken breast</strong><br>
+🥩 <strong>Tuna salad → Lean ground beef or chicken salad</strong><br>
+🦃 <strong>Any fish → Turkey or chicken thighs also work great</strong><br><br>
+Everything else in your${label} meal plan stays the same. Want me to rewrite the full plan with those swaps?`;
+            }
+            if (modification === 'noDairy') {
+                return `No dairy, got it! Here are the swaps for your${label} meal plan:<br><br>
+🥥 <strong>Greek yogurt → Coconut yogurt or an extra egg</strong><br>
+🥑 <strong>Cheese → Avocado or extra nuts for healthy fats</strong><br>
+🍳 <strong>Cottage cheese → Tofu or extra chicken</strong><br><br>
+Everything else stays the same. Want me to rewrite the full plan with those swaps?`;
+            }
+            if (modification === 'vegetarian') {
+                return `Going vegetarian — respect! Here are protein swaps for your${label} meal plan:<br><br>
+🥚 <strong>Chicken / Turkey / Beef → Eggs, tofu, or tempeh</strong><br>
+🌱 <strong>Salmon / Tuna → Tofu or plant-based protein</strong><br>
+🥜 <strong>Beef jerky → Roasted chickpeas or mixed nuts</strong><br>
+🥛 <strong>Protein shake → Plant-based protein powder</strong><br><br>
+Keep the eggs, Greek yogurt, and cheese for solid protein. Want me to rewrite the full plan?`;
+            }
+            if (modification === 'moreProtein') {
+                return `Let's pump up the protein in your${label} meal plan! Here's what to add:<br><br>
+🍳 <strong>Breakfast:</strong> Add an extra egg or a protein shake<br>
+🐔 <strong>Lunch:</strong> Double the chicken or beef portion<br>
+💪 <strong>Pre-practice:</strong> Add a protein shake or 2 hard-boiled eggs<br>
+🥛 <strong>Post-workout:</strong> Protein shake within 30 minutes of finishing<br><br>
+Aim for 1g of protein per pound of bodyweight. Want me to rewrite the full plan with higher portions?`;
+            }
+            if (modification === 'budget') {
+                return `Budget mode — smart thinking! Here are cost-cutting swaps for your${label} meal plan:<br><br>
+🐟 <strong>Salmon → Canned tuna or tilapia (much cheaper!)</strong><br>
+🥩 <strong>Lean steak → Chicken thighs or ground beef</strong><br>
+💊 <strong>Protein shakes → Extra eggs instead</strong><br>
+🥛 <strong>Greek yogurt → Regular plain yogurt</strong><br><br>
+Eggs, chicken thighs, and canned tuna are your best budget-friendly protein sources. Want me to rewrite the full plan?`;
+            }
+            return null;
         }
 
         console.log('Script loaded successfully');
