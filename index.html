@@ -395,6 +395,42 @@
             scrollbar-width: thin;
             scrollbar-color: #ccc transparent;
         }
+
+        .low-carb-plan {
+            background: #f3e5f5;
+            border-left: 4px solid #9c27b0;
+            padding: 16px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .low-carb-plan h4 {
+            color: #6a1b9a;
+            margin-bottom: 8px;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .low-carb-meal-section {
+            margin: 10px 0;
+            padding-left: 10px;
+            border-left: 2px solid #9c27b0;
+        }
+
+        .low-carb-meal-section strong {
+            color: #555;
+            display: block;
+            margin-top: 8px;
+            margin-bottom: 4px;
+        }
+
+        .low-carb-item {
+            margin: 4px 0;
+            padding-left: 5px;
+            font-size: 13px;
+        }
     </style>
 </head>
 <body>
@@ -518,30 +554,188 @@
 
             // Low Carb Response
             if (lowerMessage.includes('low carb')) {
-                return `Smart choice! Low carb eating is a solid approach for cutting fat and building lean muscle. Here's what I recommend:
+                return `Okay! Here's A Low Carb Diet! (7 Day)
 
-<div class="checklist">
-<div class="checklist-item">
-<input type="checkbox"> Proteins: Chicken breast, salmon, turkey, eggs, beef
+<div class="low-carb-plan">
+<div class="low-carb-meal-section">
+<h4>📅 Day 1</h4>
+<strong>Breakfast</strong>
+<div class="low-carb-item">☐ 3 eggs scrambled with cheese</div>
+<div class="low-carb-item">☐ Greek yogurt (plain) with berries</div>
+<div class="low-carb-item">☐ Peanut butter</div>
+
+<strong>Snack</strong>
+<div class="low-carb-item">☐ Greek yogurt + almonds</div>
+
+<strong>Lunch</strong>
+<div class="low-carb-item">☐ Grilled chicken</div>
+<div class="low-carb-item">☐ Avocado</div>
+<div class="low-carb-item">☐ Broccoli or mixed vegetables</div>
+
+<strong>Pre-Practice Snack</strong>
+<div class="low-carb-item">☐ Cheese stick + peanut butter</div>
+
+<strong>Dinner</strong>
+<div class="low-carb-item">☐ Salmon</div>
+<div class="low-carb-item">☐ Broccoli</div>
+<div class="low-carb-item">☐ Asparagus</div>
+<div class="low-carb-item">☐ Side salad</div>
 </div>
-<div class="checklist-item">
-<input type="checkbox"> Healthy fats: Avocado, olive oil, nuts, seeds
+
+<div class="low-carb-meal-section">
+<h4>📅 Day 2</h4>
+<strong>Breakfast</strong>
+<div class="low-carb-item">☐ Scrambled eggs</div>
+<div class="low-carb-item">☐ Bacon or turkey sausage</div>
+<div class="low-carb-item">☐ Avocado</div>
+
+<strong>Snack</strong>
+<div class="low-carb-item">☐ Mixed nuts</div>
+
+<strong>Lunch</strong>
+<div class="low-carb-item">☐ Turkey lettuce wraps</div>
+<div class="low-carb-item">☐ Cheese</div>
+<div class="low-carb-item">☐ Vegetables</div>
+
+<strong>Pre-Practice Snack</strong>
+<div class="low-carb-item">☐ Beef jerky + cheese</div>
+
+<strong>Dinner</strong>
+<div class="low-carb-item">☐ Beef or chicken taco bowl</div>
+<div class="low-carb-item">☐ Ground meat</div>
+<div class="low-carb-item">☐ Cheese</div>
+<div class="low-carb-item">☐ Lettuce</div>
+<div class="low-carb-item">☐ Salsa</div>
+<div class="low-carb-item">☐ Guacamole</div>
 </div>
-<div class="checklist-item">
-<input type="checkbox"> Low-carb veggies: Broccoli, spinach, peppers, zucchini, kale
+
+<div class="low-carb-meal-section">
+<h4>📅 Day 3</h4>
+<strong>Breakfast</strong>
+<div class="low-carb-item">☐ Greek yogurt</div>
+<div class="low-carb-item">☐ Walnuts</div>
+<div class="low-carb-item">☐ Berries</div>
+
+<strong>Snack</strong>
+<div class="low-carb-item">☐ Cheese stick</div>
+<div class="low-carb-item">☐ Almonds</div>
+
+<strong>Lunch</strong>
+<div class="low-carb-item">☐ Lean meatballs</div>
+<div class="low-carb-item">☐ Zucchini noodles</div>
+<div class="low-carb-item">☐ Side salad</div>
+
+<strong>Pre-Practice Snack</strong>
+<div class="low-carb-item">☐ Hard-boiled eggs</div>
+
+<strong>Dinner</strong>
+<div class="low-carb-item">☐ Chicken stir fry</div>
+<div class="low-carb-item">☐ Broccoli</div>
+<div class="low-carb-item">☐ Bell peppers</div>
+<div class="low-carb-item">☐ Mushrooms</div>
 </div>
-<div class="checklist-item">
-<input type="checkbox"> Limited carbs: Sweet potato (small portions), brown rice (minimal)
+
+<div class="low-carb-meal-section">
+<h4>📅 Day 4</h4>
+<strong>Breakfast</strong>
+<div class="low-carb-item">☐ Omelet with eggs, cheese, spinach, and salsa</div>
+
+<strong>Snack</strong>
+<div class="low-carb-item">☐ Protein shake (low sugar)</div>
+
+<strong>Lunch</strong>
+<div class="low-carb-item">☐ Tuna or chicken salad</div>
+<div class="low-carb-item">☐ Lettuce wraps</div>
+
+<strong>Pre-Practice Snack</strong>
+<div class="low-carb-item">☐ Cheese + turkey slices</div>
+
+<strong>Dinner</strong>
+<div class="low-carb-item">☐ Turkey meatballs</div>
+<div class="low-carb-item">☐ Roasted cauliflower</div>
+<div class="low-carb-item">☐ Green beans</div>
 </div>
-<div class="checklist-item">
-<input type="checkbox"> Avoid: Bread, pasta, rice, sugar, processed foods
+
+<div class="low-carb-meal-section">
+<h4>📅 Day 5</h4>
+<strong>Breakfast</strong>
+<div class="low-carb-item">☐ Eggs</div>
+<div class="low-carb-item">☐ Bacon</div>
+<div class="low-carb-item">☐ Greek yogurt</div>
+
+<strong>Snack</strong>
+<div class="low-carb-item">☐ Pecans or walnuts</div>
+
+<strong>Lunch</strong>
+<div class="low-carb-item">☐ Chicken with vegetables</div>
+<div class="low-carb-item">☐ Greek yogurt</div>
+
+<strong>Pre-Practice Snack</strong>
+<div class="low-carb-item">☐ Beef jerky</div>
+
+<strong>Dinner</strong>
+<div class="low-carb-item">☐ Burger bowl</div>
+<div class="low-carb-item">☐ Lean beef</div>
+<div class="low-carb-item">☐ Lettuce</div>
+<div class="low-carb-item">☐ Tomato</div>
+<div class="low-carb-item">☐ Cheese</div>
+<div class="low-carb-item">☐ Pickles</div>
+<div class="low-carb-item">☐ Avocado</div>
 </div>
-<div class="checklist-item">
-<input type="checkbox"> Stay hydrated: 3+ liters of water daily
+
+<div class="low-carb-meal-section">
+<h4>📅 Day 6</h4>
+<strong>Breakfast</strong>
+<div class="low-carb-item">☐ Eggs</div>
+<div class="low-carb-item">☐ Cheese</div>
+<div class="low-carb-item">☐ Avocado</div>
+
+<strong>Snack</strong>
+<div class="low-carb-item">☐ Protein smoothie (unsweetened almond milk + protein powder)</div>
+
+<strong>Lunch</strong>
+<div class="low-carb-item">☐ Burrito bowl</div>
+<div class="low-carb-item">☐ Chicken</div>
+<div class="low-carb-item">☐ Cheese</div>
+<div class="low-carb-item">☐ Lettuce</div>
+<div class="low-carb-item">☐ Salsa</div>
+<div class="low-carb-item">☐ Guacamole</div>
+
+<strong>Pre-Practice Snack</strong>
+<div class="low-carb-item">☐ Turkey slices + cheese</div>
+
+<strong>Dinner</strong>
+<div class="low-carb-item">☐ Grilled chicken</div>
+<div class="low-carb-item">☐ Broccoli</div>
+<div class="low-carb-item">☐ Cauliflower</div>
+</div>
+
+<div class="low-carb-meal-section">
+<h4>📅 Day 7</h4>
+<strong>Breakfast</strong>
+<div class="low-carb-item">☐ Eggs</div>
+<div class="low-carb-item">☐ Greek yogurt</div>
+<div class="low-carb-item">☐ Berries</div>
+
+<strong>Snack</strong>
+<div class="low-carb-item">☐ Protein bar (low-carb) or peanut butter</div>
+
+<strong>Lunch</strong>
+<div class="low-carb-item">☐ Chicken salad</div>
+<div class="low-carb-item">☐ Olive oil dressing</div>
+<div class="low-carb-item">☐ Mixed vegetables</div>
+
+<strong>Pre-Practice Snack</strong>
+<div class="low-carb-item">☐ Cheese + nuts</div>
+
+<strong>Dinner</strong>
+<div class="low-carb-item">☐ Steak or tofu</div>
+<div class="low-carb-item">☐ Roasted Brussels sprouts</div>
+<div class="low-carb-item">☐ Side salad</div>
 </div>
 </div>
 
-<p style="margin-top: 15px; font-size: 13px;"><strong>Daily breakdown:</strong> Aim for 40-50% protein, 30-40% healthy fats, 10-20% carbs. This keeps your energy high for training while shedding body fat. You'll feel stronger and sharper—trust me on this one!</p>`;
+This low-carb plan is designed to keep you lean, energized, and performing at your peak. Focus on proteins, healthy fats, and veggies—skip the bread and pasta. You'll feel stronger and recover faster! Stay hydrated and crush it! 💪`;
             }
 
             // Fitness Plan Response
