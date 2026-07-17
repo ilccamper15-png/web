@@ -432,6 +432,43 @@
             padding-left: 5px;
             font-size: 13px;
         }
+
+        .budget-meal-plan {
+            background: #fefce8;
+            border-left: 4px solid #ca8a04;
+            padding: 16px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-size: 13px;
+            line-height: 1.7;
+            white-space: pre-line;
+        }
+
+        .budget-meal-plan h4 {
+            color: #92400e;
+            margin-bottom: 8px;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .budget-meal-section {
+            margin: 10px 0;
+            padding-left: 10px;
+            border-left: 2px solid #ca8a04;
+        }
+
+        .budget-meal-section strong {
+            color: #555;
+            display: block;
+            margin-top: 8px;
+            margin-bottom: 4px;
+        }
+
+        .budget-item {
+            margin: 4px 0;
+            padding-left: 5px;
+            font-size: 13px;
+        }
     </style>
 </head>
 <body>
@@ -499,7 +536,7 @@
     <script>
         let conversationHistory = [];
         const conversationState = {
-            lastPlanType: null   // null | 'standard' | 'lowCarb'
+            lastPlanType: null   // null | 'standard' | 'lowCarb' | 'budget'
         };
 
         // Keywords that signal the user wants to remove carbs — shared between
@@ -510,15 +547,25 @@
             'cut the carb'
         ];
 
+        // Keywords that signal a fresh request for a budget/cheap meal plan (Phase 2).
+        const BUDGET_MEAL_TRIGGERS = [
+            'cheap meal', 'budget meal', 'cheap plan', 'budget plan',
+            'meal on a budget', 'meal plan on a budget',
+            'i only have $', 'only have $', 'dollars a week', 'dollars a month',
+            'affordable meal', 'low cost meal', 'inexpensive meal'
+        ];
+
         /**
          * Returns a label string for the currently active meal plan type.
          * The trailing space is intentional: callers embed it directly before "meal plan"
          * so `your ${getMealPlanLabel()}meal plan` always reads naturally,
-         * e.g. "your low-carb meal plan" or "your meal plan".
-         * @returns {string} 'low-carb ' when the low-carb plan is active, '' otherwise.
+         * e.g. "your low-carb meal plan", "your budget meal plan", or "your meal plan".
+         * @returns {string} 'low-carb ', 'budget ', or '' depending on the active plan.
          */
         function getMealPlanLabel() {
-            return conversationState.lastPlanType === 'lowCarb' ? 'low-carb ' : '';
+            if (conversationState.lastPlanType === 'lowCarb') return 'low-carb ';
+            if (conversationState.lastPlanType === 'budget') return 'budget ';
+            return '';
         }
 
         const soccerMealPlan = `Since I know you're training a lot for soccer, here's a high-protein, athlete-friendly meal plan that keeps carbs moderate (not excessive) while giving you enough fuel for practices and recovery.
@@ -926,6 +973,207 @@ Celery or cucumber with cream cheese
 Greek yogurt (plain, unsweetened)
 Avocado`;
 
+        const budgetMealPlan = `Here's your budget-friendly, high-protein 7-day meal plan 🥚💰 — built around affordable, nutritious foods you can find at any grocery store.
+
+💰 7-Day Budget Meal Plan
+
+📦 Estimated Weekly Grocery Cost: ~$50-$55
+
+🛒 Weekly Shopping List
+☐ Eggs (2 dozen) — ~$5
+☐ Oats, store-brand large container — ~$4
+☐ Rice, 5 lb bag — ~$4
+☐ Canned tuna (6 cans) — ~$7
+☐ Chicken thighs (3-4 lbs) — ~$9
+☐ Canned beans (3 cans) — ~$3
+☐ Dry lentils (1 bag) — ~$2
+☐ Peanut butter, store-brand — ~$4
+☐ Greek yogurt, store-brand 32 oz — ~$5
+☐ Bananas (1 bunch) — ~$2
+☐ Frozen vegetables (2 bags) — ~$5
+☐ Potatoes (5 lb bag) — ~$4
+
+📅 Day 1
+Breakfast
+
+☐ Oatmeal (½ cup oats) + banana
+☐ 2 scrambled eggs
+
+Snack
+
+☐ Peanut butter on toast
+
+Lunch
+
+☐ Canned tuna over rice
+☐ Steamed frozen vegetables
+
+Pre-Practice Snack
+
+☐ Banana
+
+Dinner
+
+☐ Baked chicken thighs
+☐ Rice
+☐ Frozen vegetables
+
+📅 Day 2
+Breakfast
+
+☐ 3 scrambled eggs
+☐ Oatmeal with banana
+
+Snack
+
+☐ Greek yogurt
+
+Lunch
+
+☐ Rice and beans
+☐ Frozen vegetables
+
+Pre-Practice Snack
+
+☐ Peanut butter on toast
+
+Dinner
+
+☐ Baked chicken thighs
+☐ Boiled potatoes
+☐ Frozen vegetables
+
+📅 Day 3
+Breakfast
+
+☐ Oatmeal with peanut butter
+☐ Banana
+
+Snack
+
+☐ 2 hard-boiled eggs
+
+Lunch
+
+☐ Lentil soup (lentils + frozen veggies + seasoning)
+☐ Toast
+
+Pre-Practice Snack
+
+☐ Banana + peanut butter
+
+Dinner
+
+☐ Canned tuna rice bowl
+☐ Frozen vegetables
+
+📅 Day 4
+Breakfast
+
+☐ 3 scrambled eggs
+☐ Toast with peanut butter
+
+Snack
+
+☐ Greek yogurt + banana
+
+Lunch
+
+☐ Chicken thighs over rice
+☐ Frozen vegetables
+
+Pre-Practice Snack
+
+☐ 2 hard-boiled eggs
+
+Dinner
+
+☐ Rice and beans
+☐ Potatoes
+
+📅 Day 5
+Breakfast
+
+☐ Oatmeal with banana
+☐ 2 scrambled eggs
+
+Snack
+
+☐ Peanut butter on toast
+
+Lunch
+
+☐ Canned tuna rice bowl
+☐ Frozen vegetables
+
+Pre-Practice Snack
+
+☐ Banana
+
+Dinner
+
+☐ Baked chicken thighs
+☐ Rice
+☐ Frozen vegetables
+
+📅 Day 6
+Breakfast
+
+☐ 3 scrambled eggs
+☐ Oatmeal
+
+Snack
+
+☐ Greek yogurt
+
+Lunch
+
+☐ Lentils over rice
+☐ Frozen vegetables
+
+Pre-Practice Snack
+
+☐ Peanut butter on toast
+
+Dinner
+
+☐ Baked chicken thighs
+☐ Potatoes
+☐ Frozen vegetables
+
+📅 Day 7
+Breakfast
+
+☐ Oatmeal with peanut butter + banana
+
+Snack
+
+☐ 2 hard-boiled eggs
+
+Lunch
+
+☐ Rice and beans
+☐ Frozen vegetables
+
+Pre-Practice Snack
+
+☐ Greek yogurt + banana
+
+Dinner
+
+☐ Canned tuna rice bowl
+☐ Frozen vegetables
+
+💧 Daily Hydration
+☐ Drink water throughout the day.
+☐ Drink extra water before, during, and after practice.
+💡 Budget Athlete Tips
+• Eggs are your #1 budget protein — versatile and cheap!
+• Buy store-brand oats, yogurt, and peanut butter to save 20-30%.
+• Frozen vegetables are just as nutritious as fresh and cost less.
+• Cook chicken thighs and rice in bulk to save time and money.
+• Peanut butter + oats = cheap, filling fuel for before practice.`;
+
         // Attach event listeners after DOM is loaded
         document.getElementById('userInput').addEventListener('keypress', function(event) {
             if (event.key === 'Enter') {
@@ -1013,6 +1261,11 @@ Avocado`;
             if (LOW_CARB_TRIGGERS.some(kw => msg.includes(kw))) {
                 conversationState.lastPlanType = 'lowCarb';
                 return `<div class="meal-plan">${lowCarbMealPlan}</div>`;
+            }
+
+            if (BUDGET_MEAL_TRIGGERS.some(kw => msg.includes(kw))) {
+                conversationState.lastPlanType = 'budget';
+                return `<div class="budget-meal-plan">${budgetMealPlan}</div>`;
             }
 
             if (msg.includes('workout') || msg.includes('exercise')) {
@@ -1110,12 +1363,8 @@ Keep the eggs, Greek yogurt, and cheese for solid protein. Want me to rewrite th
 Aim for 1g of protein per pound of bodyweight. Want me to rewrite the full plan with higher portions?`;
             }
             if (modification === 'budget') {
-                return `Budget mode — smart thinking! Here are cost-cutting swaps for your ${label}meal plan:<br><br>
-🐟 <strong>Salmon → Canned tuna or tilapia (much cheaper!)</strong><br>
-🥩 <strong>Lean steak → Chicken thighs or ground beef</strong><br>
-💊 <strong>Protein shakes → Extra eggs instead</strong><br>
-🥛 <strong>Greek yogurt → Regular plain yogurt</strong><br><br>
-Eggs, chicken thighs, and canned tuna are your best budget-friendly protein sources. Want me to rewrite the full plan?`;
+                conversationState.lastPlanType = 'budget';
+                return `Budget mode — smart thinking! Here's your updated budget-friendly 7-day meal plan 💰:<div class="budget-meal-plan">${budgetMealPlan}</div>`;
             }
             return null;
         }
