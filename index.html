@@ -498,82 +498,7 @@
 
     <script>
         let conversationHistory = [];
-
-        // Attach event listeners after DOM is loaded
-        document.getElementById('userInput').addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
-                event.preventDefault();
-                sendMessage();
-            }
-        });
-
-        document.getElementById('sendBtn').addEventListener('click', sendMessage);
-
-        function sendMessage() {
-            console.log('sendMessage called');
-            const input = document.getElementById('userInput');
-            const message = input.value.trim();
-
-            console.log('Message:', message);
-
-            if (!message) {
-                console.log('Empty message, returning');
-                return;
-            }
-
-            addMessageToChat(message, 'user');
-            input.value = '';
-
-            const loadingId = 'loading-' + Date.now();
-            addMessageToChat('<div class="loading"><span></span><span></span><span></span></div>', 'assistant', loadingId);
-
-            setTimeout(() => {
-                const response = generateResponse(message);
-                console.log('Response:', response);
-                removeMessageById(loadingId);
-                addMessageToChat(response, 'assistant');
-            }, 500);
-        }
-
-        function addMessageToChat(message, sender, id = null) {
-            const messagesDiv = document.getElementById('messages');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = 'message ' + sender;
-            if (id) messageDiv.id = id;
-
-            const contentDiv = document.createElement('div');
-            contentDiv.className = 'message-content';
-            contentDiv.innerHTML = message;
-
-            messageDiv.appendChild(contentDiv);
-            messagesDiv.appendChild(messageDiv);
-            messagesDiv.scrollTop = messagesDiv.scrollHeight;
-        }
-
-        function removeMessageById(id) {
-            const element = document.getElementById(id);
-            if (element) {
-                element.remove();
-            }
-        }
-
-        function generateResponse(userMessage) {
-            const msg = userMessage.toLowerCase();
-
-            if (msg.includes('fitness plan')) {
-                return 'Perfect! Here\'s your 7-day fitness plan: <strong>Day 1:</strong> Full body strength (Squats 3x8-12, Push-ups 3x8-12, Rows 3x10-12). <strong>Day 2:</strong> Cardio 45min + Stretching. <strong>Day 3:</strong> Upper body (Press, Pull-ups, Chest Press). <strong>Day 4:</strong> Rest day. <strong>Day 5:</strong> Lower body. <strong>Day 6:</strong> Conditioning. <strong>Day 7:</strong> Active recovery. Get after it! 💪';
-            }
-
-            if (msg.includes('low carb')) {
-                return 'Great choice! Here\'s a low-carb diet: <strong>Breakfast:</strong> Eggs + cheese, Greek yogurt, peanut butter. <strong>Lunch:</strong> Grilled chicken + avocado + broccoli. <strong>Dinner:</strong> Salmon + vegetables. <strong>Snacks:</strong> Nuts, cheese, Greek yogurt. Stay under 50g carbs daily and you\'ll feel amazing!';
-            }
-
-            if (msg.includes('workout') || msg.includes('exercise')) {
-                return 'Let\'s get you strong! What\'s your goal - strength training, cardio, flexibility, or a mix? I can give you a personalized routine!';
-            }
-
-            if (msg.includes('meal plan') || msg.includes('nutrition') || msg.includes('meal') || msg.includes('diet')) {
-                return `<div class="meal-plan">Since I know you're training a lot for soccer, here's a high-protein, athlete-friendly meal plan that keeps carbs moderate (not excessive) while giving you enough fuel for practices and recovery.
+        const soccerMealPlan = `Since I know you're training a lot for soccer, here's a high-protein, athlete-friendly meal plan that keeps carbs moderate (not excessive) while giving you enough fuel for practices and recovery.
 
 ⚽ 7-Day Soccer Meal Plan
 📅 Day 1
@@ -775,7 +700,83 @@ Beef jerky
 Almonds, walnuts, or pistachios
 Peanut butter
 Cottage cheese
-Celery or cucumber with hummus</div>`;
+Celery or cucumber with hummus`;
+
+        // Attach event listeners after DOM is loaded
+        document.getElementById('userInput').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                sendMessage();
+            }
+        });
+
+        document.getElementById('sendBtn').addEventListener('click', sendMessage);
+
+        function sendMessage() {
+            console.log('sendMessage called');
+            const input = document.getElementById('userInput');
+            const message = input.value.trim();
+
+            console.log('Message:', message);
+
+            if (!message) {
+                console.log('Empty message, returning');
+                return;
+            }
+
+            addMessageToChat(message, 'user');
+            input.value = '';
+
+            const loadingId = 'loading-' + Date.now();
+            addMessageToChat('<div class="loading"><span></span><span></span><span></span></div>', 'assistant', loadingId);
+
+            setTimeout(() => {
+                const response = generateResponse(message);
+                console.log('Response:', response);
+                removeMessageById(loadingId);
+                addMessageToChat(response, 'assistant');
+            }, 500);
+        }
+
+        function addMessageToChat(message, sender, id = null) {
+            const messagesDiv = document.getElementById('messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message ' + sender;
+            if (id) messageDiv.id = id;
+
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'message-content';
+            contentDiv.innerHTML = message;
+
+            messageDiv.appendChild(contentDiv);
+            messagesDiv.appendChild(messageDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function removeMessageById(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.remove();
+            }
+        }
+
+        function generateResponse(userMessage) {
+            const msg = userMessage.toLowerCase();
+
+            if (msg.includes('fitness plan')) {
+                return 'Perfect! Here\'s your 7-day fitness plan: <strong>Day 1:</strong> Full body strength (Squats 3x8-12, Push-ups 3x8-12, Rows 3x10-12). <strong>Day 2:</strong> Cardio 45min + Stretching. <strong>Day 3:</strong> Upper body (Press, Pull-ups, Chest Press). <strong>Day 4:</strong> Rest day. <strong>Day 5:</strong> Lower body. <strong>Day 6:</strong> Conditioning. <strong>Day 7:</strong> Active recovery. Get after it! 💪';
+            }
+
+            if (msg.includes('low carb')) {
+                return 'Great choice! Here\'s a low-carb diet: <strong>Breakfast:</strong> Eggs + cheese, Greek yogurt, peanut butter. <strong>Lunch:</strong> Grilled chicken + avocado + broccoli. <strong>Dinner:</strong> Salmon + vegetables. <strong>Snacks:</strong> Nuts, cheese, Greek yogurt. Stay under 50g carbs daily and you\'ll feel amazing!';
+            }
+
+            if (msg.includes('workout') || msg.includes('exercise')) {
+                return 'Let\'s get you strong! What\'s your goal - strength training, cardio, flexibility, or a mix? I can give you a personalized routine!';
+            }
+
+            if (msg.includes('meal plan') || msg.includes('nutrition') || msg.includes('meal') || msg.includes('diet')) {
+                return `<div class="meal-plan">${soccerMealPlan}</div>`;
             }
 
             return 'Great question! I can help with: fitness plans, low-carb diets, workout routines, nutrition advice, and building better habits. What would you like?';
