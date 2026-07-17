@@ -756,11 +756,20 @@ Celery or cucumber with hummus`;
             }
         }
 
+        function escapeHtml(text) {
+            return text
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
         function generateResponse(userMessage) {
             const msg = userMessage.toLowerCase();
 
             if (msg.includes('meal plan')) {
-                return `<div class="meal-plan">${WEEKLY_MEAL_PLAN_TEXT.replace(/\n/g, '<br>')}</div>`;
+                return `<div class="meal-plan">${escapeHtml(WEEKLY_MEAL_PLAN_TEXT).replace(/\n/g, '<br>')}</div>`;
             }
 
             if (msg.includes('fitness plan')) {
