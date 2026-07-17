@@ -510,8 +510,13 @@
             'cut the carb'
         ];
 
-        // Returns a label string ready to embed in "your ... meal plan" templates.
-        // Trailing space is included so callers can write `${getMealPlanLabel()}meal plan`.
+        /**
+         * Returns a label string for the currently active meal plan type.
+         * The trailing space is intentional: callers embed it directly before "meal plan"
+         * so `your ${getMealPlanLabel()}meal plan` always reads naturally,
+         * e.g. "your low-carb meal plan" or "your meal plan".
+         * @returns {string} 'low-carb ' when the low-carb plan is active, '' otherwise.
+         */
         function getMealPlanLabel() {
             return conversationState.lastPlanType === 'lowCarb' ? 'low-carb ' : '';
         }
@@ -986,7 +991,8 @@ Avocado`;
             if (conversationState.lastPlanType !== null) {
                 const modification = detectMealPlanModification(msg);
                 if (modification) {
-                    return handleModification(modification);
+                    const response = handleModification(modification);
+                    if (response !== null) return response;
                 }
                 // Detect generic follow-up phrasing that references the current plan
                 if (isFollowUpMessage(msg)) {
@@ -1049,14 +1055,18 @@ Avocado`;
             return null;
         }
 
-        // Returns true when the message likely refers back to the current plan
+        // Returns true when the message likely refers back to the current plan.
+        // Uses word-boundary regex to avoid false positives such as
+        // "wait" matching "weight" or "change" matching "exchange".
         function isFollowUpMessage(msg) {
-            const phrases = [
-                'wait', 'actually', 'change', 'modify', 'update', 'instead',
-                'make it', 'without', 'remove',
-                'add more', 'can you change', 'can you update', 'can you modify'
+            const wordPatterns = [
+                /\bwait\b/, /\bactually\b/, /\bchange\b/, /\bmodify\b/,
+                /\bupdate\b/, /\binstead\b/, /\bwithout\b/, /\bremove\b/
             ];
-            return phrases.some(p => msg.includes(p));
+            const phrasePatterns = [
+                /make it/, /add more/, /can you change/, /can you update/, /can you modify/
+            ];
+            return wordPatterns.some(p => p.test(msg)) || phrasePatterns.some(p => p.test(msg));
         }
 
         // Builds a response for a detected plan modification
