@@ -410,12 +410,12 @@
 
             <div class="info-section">
                 <h3>About Me</h3>
-                <p>Hey! I'm Coach Jake from Seattle, Washington. I'm passionate about helping youth athletes—especially soccer players—reach their full potential. I trained at the Liverpool Youth Academy at the U19 level, and I know what it takes to excel.</p>
+                <p>Hey! I'm Coach Jake from Seattle, Washington. I'm passionate about helping youth athletes—especially soccer players—reach their full potential. I trained at the Liverpool Youth [...]
             </div>
 
             <div class="info-section">
                 <h3>My Coaching Style</h3>
-                <p>I'm not the strict type, but I get my point across. My goal is to help you get fit, develop better habits, and leave the junk food behind. Let's work together to make you the best athlete you can be!</p>
+                <p>I'm not the strict type, but I get my point across. My goal is to help you get fit, develop better habits, and leave the junk food behind. Let's work together to make you the best a[...]
             </div>
 
             <div class="info-section">
@@ -516,6 +516,34 @@
         function generateLocalResponse(userMessage) {
             const lowerMessage = userMessage.toLowerCase();
 
+            // Low Carb Response
+            if (lowerMessage.includes('low carb')) {
+                return `Smart choice! Low carb eating is a solid approach for cutting fat and building lean muscle. Here's what I recommend:
+
+<div class="checklist">
+<div class="checklist-item">
+<input type="checkbox"> Proteins: Chicken breast, salmon, turkey, eggs, beef
+</div>
+<div class="checklist-item">
+<input type="checkbox"> Healthy fats: Avocado, olive oil, nuts, seeds
+</div>
+<div class="checklist-item">
+<input type="checkbox"> Low-carb veggies: Broccoli, spinach, peppers, zucchini, kale
+</div>
+<div class="checklist-item">
+<input type="checkbox"> Limited carbs: Sweet potato (small portions), brown rice (minimal)
+</div>
+<div class="checklist-item">
+<input type="checkbox"> Avoid: Bread, pasta, rice, sugar, processed foods
+</div>
+<div class="checklist-item">
+<input type="checkbox"> Stay hydrated: 3+ liters of water daily
+</div>
+</div>
+
+<p style="margin-top: 15px; font-size: 13px;"><strong>Daily breakdown:</strong> Aim for 40-50% protein, 30-40% healthy fats, 10-20% carbs. This keeps your energy high for training while shedding body fat. You'll feel stronger and sharper—trust me on this one!</p>`;
+            }
+
             // Fitness Plan Response
             if (lowerMessage.includes('make me a fitness plan')) {
                 return `Perfect! Here's your complete 7-day fitness plan to dominate and get in peak shape:
@@ -608,7 +636,7 @@
 </div>
 </div>
 
-This is a balanced program designed to build strength, improve conditioning, and keep you healthy. Stick with it for 4-6 weeks and you'll see massive improvements! Remember—consistency is key. Let's get you to the next level! 🚀`;
+This is a balanced program designed to build strength, improve conditioning, and keep you healthy. Stick with it for 4-6 weeks and you'll see massive improvements! Remember—consistency is key. [...]
             }
 
             // Meal Plan Response
@@ -786,7 +814,7 @@ This is a balanced program designed to build strength, improve conditioning, and
 </div>
 </div>
 
-This plan is designed to keep you energized before practice, help you recover after, and support your overall athletic performance. Drink plenty of water throughout the day—at least 2-3 liters! 💪`;
+This plan is designed to keep you energized before practice, help you recover after, and support your overall athletic performance. Drink plenty of water throughout the day—at least 2-3 liters! 💪[...]
             }
 
             // Workout responses
