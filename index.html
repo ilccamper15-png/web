@@ -498,8 +498,6 @@
 
     <script>
         let conversationHistory = [];
-
-        // Tracks what was last shared so follow-up messages can reference it
         const conversationState = {
             lastPlanType: null   // null | 'standard' | 'lowCarb'
         };
@@ -969,7 +967,6 @@ Avocado`;
 
         function generateResponse(userMessage) {
             const msg = userMessage.toLowerCase().trim();
-            conversationHistory.push({ role: 'user', content: userMessage });
 
             // ── Phase 1: follow-up modifications to a previously shared meal plan ──
             if (conversationState.lastPlanType !== null) {
@@ -1046,8 +1043,8 @@ Avocado`;
         // Returns true when the message likely refers back to the current plan
         function isFollowUpMessage(msg) {
             const phrases = [
-                'wait', 'actually', 'change ', 'modify', 'update ', 'instead',
-                'make it', "i don't", "i'm not", "i'm a", 'without ', 'remove ',
+                'wait', 'actually', 'change', 'modify', 'update', 'instead',
+                'make it', "i don't", "i'm not", "i'm a", 'without', 'remove',
                 'add more', 'can you change', 'can you update', 'can you modify'
             ];
             return phrases.some(p => msg.includes(p));
