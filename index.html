@@ -446,12 +446,12 @@
 
             <div class="info-section">
                 <h3>About Me</h3>
-                <p>Hey! I'm Coach Jake from Seattle, Washington. I'm passionate about helping youth athletes—especially soccer players—reach their full potential. I trained at the Liverpool Youth [...]
+                <p>Hey! I'm Coach Jake from Seattle, Washington. I'm passionate about helping youth athletes—especially soccer players—reach their full potential. I trained at the Liverpool Youth Academy and have helped dozens of athletes achieve their goals!</p>
             </div>
 
             <div class="info-section">
                 <h3>My Coaching Style</h3>
-                <p>I'm not the strict type, but I get my point across. My goal is to help you get fit, develop better habits, and leave the junk food behind. Let's work together to make you the b[...]
+                <p>I'm not the strict type, but I get my point across. My goal is to help you get fit, develop better habits, and leave the junk food behind. Let's work together to make you the best athlete you can be!</p>
             </div>
 
             <div class="info-section">
@@ -489,54 +489,55 @@
             </div>
 
             <div class="input-area">
-                <input type="text" id="userInput" placeholder="Ask Coach Jake anything..." autocomplete="off" onkeypress="handleKeyPress(event)">
-                <button onclick="sendMessage()">Send</button>
+                <input type="text" id="userInput" placeholder="Ask Coach Jake anything..." autocomplete="off">
+                <button id="sendBtn" onclick="sendMessage()">Send</button>
             </div>
         </div>
     </div>
 
     <script>
-        // Store conversation history
         let conversationHistory = [];
 
-        function handleKeyPress(event) {
+        // Attach event listeners after DOM is loaded
+        document.getElementById('userInput').addEventListener('keypress', function(event) {
             if (event.key === 'Enter') {
+                event.preventDefault();
                 sendMessage();
             }
-        }
+        });
+
+        document.getElementById('sendBtn').addEventListener('click', sendMessage);
 
         function sendMessage() {
+            console.log('sendMessage called');
             const input = document.getElementById('userInput');
             const message = input.value.trim();
 
-            if (!message) return;
+            console.log('Message:', message);
 
-            // Add user message to chat
+            if (!message) {
+                console.log('Empty message, returning');
+                return;
+            }
+
             addMessageToChat(message, 'user');
             input.value = '';
 
-            // Show loading indicator
             const loadingId = 'loading-' + Date.now();
             addMessageToChat('<div class="loading"><span></span><span></span><span></span></div>', 'assistant', loadingId);
 
-            // Generate response
-            const localResponse = generateLocalResponse(message);
-            removeMessageById(loadingId);
-            addMessageToChat(localResponse, 'assistant');
-            conversationHistory.push({
-                role: 'user',
-                content: message
-            });
-            conversationHistory.push({
-                role: 'assistant',
-                content: localResponse
-            });
+            setTimeout(() => {
+                const response = generateResponse(message);
+                console.log('Response:', response);
+                removeMessageById(loadingId);
+                addMessageToChat(response, 'assistant');
+            }, 500);
         }
 
         function addMessageToChat(message, sender, id = null) {
             const messagesDiv = document.getElementById('messages');
             const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${sender}`;
+            messageDiv.className = 'message ' + sender;
             if (id) messageDiv.id = id;
 
             const contentDiv = document.createElement('div');
@@ -545,166 +546,39 @@
 
             messageDiv.appendChild(contentDiv);
             messagesDiv.appendChild(messageDiv);
-
-            // Scroll to bottom
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
         }
 
         function removeMessageById(id) {
             const element = document.getElementById(id);
-            if (element) element.remove();
+            if (element) {
+                element.remove();
+            }
         }
 
-        function generateLocalResponse(userMessage) {
-            const lowerMessage = userMessage.toLowerCase();
+        function generateResponse(userMessage) {
+            const msg = userMessage.toLowerCase();
 
-            // Meal plan with low carbs
-            if (lowerMessage.includes('make the meal plan have low carbs')) {
-                return `If your goal is very low-carb, here's a version that keeps the protein high while replacing the bread, rice, pasta, potatoes, oats, granola, tortillas, and sugary snacks.
-
-<div class="low-carb-plan">
-<div class="low-carb-meal-section">
-<h4>📅 Day 1</h4>
-<strong>Breakfast</strong>
-<div class="low-carb-item">☐ 3 eggs scrambled with cheese</div>
-<div class="low-carb-item">☐ Greek yogurt (plain) with berries</div>
-<div class="low-carb-item">☐ Peanut butter</div>
-
-<strong>Snack</strong>
-<div class="low-carb-item">☐ Greek yogurt + almonds</div>
-
-<strong>Lunch</strong>
-<div class="low-carb-item">☐ Grilled chicken</div>
-<div class="low-carb-item">☐ Avocado</div>
-<div class="low-carb-item">☐ Broccoli or mixed vegetables</div>
-
-<strong>Pre-Practice Snack</strong>
-<div class="low-carb-item">☐ Cheese stick + peanut butter</div>
-
-<strong>Dinner</strong>
-<div class="low-carb-item">☐ Salmon</div>
-<div class="low-carb-item">☐ Broccoli</div>
-<div class="low-carb-item">☐ Asparagus</div>
-<div class="low-carb-item">☐ Side salad</div>
-</div>
-</div>
-
-This plan keeps your carbs under 50g per day while staying super high in protein. You'll stay full, energized, and lean!`;
+            if (msg.includes('fitness plan')) {
+                return 'Perfect! Here\'s your 7-day fitness plan: <strong>Day 1:</strong> Full body strength (Squats 3x8-12, Push-ups 3x8-12, Rows 3x10-12). <strong>Day 2:</strong> Cardio 45min + Stretching. <strong>Day 3:</strong> Upper body (Press, Pull-ups, Chest Press). <strong>Day 4:</strong> Rest day. <strong>Day 5:</strong> Lower body. <strong>Day 6:</strong> Conditioning. <strong>Day 7:</strong> Active recovery. Get after it! 💪';
             }
 
-            // Low Carb Response
-            if (lowerMessage.includes('low carb')) {
-                return `Okay! Here's A Low Carb Diet! (7 Day)
-
-<div class="low-carb-plan">
-<div class="low-carb-meal-section">
-<h4>📅 Day 1</h4>
-<strong>Breakfast</strong>
-<div class="low-carb-item">☐ 3 eggs scrambled with cheese</div>
-<div class="low-carb-item">☐ Greek yogurt (plain) with berries</div>
-<div class="low-carb-item">☐ Peanut butter</div>
-
-<strong>Snack</strong>
-<div class="low-carb-item">☐ Greek yogurt + almonds</div>
-
-<strong>Lunch</strong>
-<div class="low-carb-item">☐ Grilled chicken</div>
-<div class="low-carb-item">☐ Avocado</div>
-<div class="low-carb-item">☐ Broccoli or mixed vegetables</div>
-
-<strong>Pre-Practice Snack</strong>
-<div class="low-carb-item">☐ Cheese stick + peanut butter</div>
-
-<strong>Dinner</strong>
-<div class="low-carb-item">☐ Salmon</div>
-<div class="low-carb-item">☐ Broccoli</div>
-<div class="low-carb-item">☐ Asparagus</div>
-<div class="low-carb-item">☐ Side salad</div>
-</div>
-</div>
-
-This low-carb plan is designed to keep you lean, energized, and performing at your peak. Focus on proteins, healthy fats, and veggies!`;
+            if (msg.includes('low carb')) {
+                return 'Great choice! Here\'s a low-carb diet: <strong>Breakfast:</strong> Eggs + cheese, Greek yogurt, peanut butter. <strong>Lunch:</strong> Grilled chicken + avocado + broccoli. <strong>Dinner:</strong> Salmon + vegetables. <strong>Snacks:</strong> Nuts, cheese, Greek yogurt. Stay under 50g carbs daily and you\'ll feel amazing!';
             }
 
-            // Fitness Plan Response
-            if (lowerMessage.includes('make me a fitness plan') || lowerMessage.includes('fitness plan')) {
-                return `Perfect! Here's your complete 7-day fitness plan to dominate and get in peak shape:
-
-<div class="fitness-plan">
-<p style="font-weight: bold; color: #22c55e; margin-bottom: 10px;">📋 WEEKLY FITNESS PLAN (7 Days)</p>
-
-<div class="fitness-day">
-<h4>🏋️ Day 1 — Strength (Full Body)</h4>
-<div class="fitness-section">
-<div class="fitness-exercise">□ Squats — 3 × 8–12</div>
-<div class="fitness-exercise">□ Push-ups or bench press — 3 × 8–12</div>
-<div class="fitness-exercise">□ Rows (dumbbell/cable/band) — 3 × 10–12</div>
-<div class="fitness-exercise">□ Romanian deadlifts — 3 × 8–12</div>
-<div class="fitness-exercise">□ Plank — 3 × 30–60 seconds</div>
-</div>
-</div>
-
-<div class="fitness-day">
-<h4>🏃 Day 2 — Cardio + Mobility</h4>
-<div class="fitness-section">
-<div class="fitness-exercise">□ 30–45 minutes: brisk walking, cycling, jogging, or swimming</div>
-<div class="fitness-exercise">□ 10 minutes stretching</div>
-</div>
-</div>
-
-<div class="fitness-day">
-<h4>💪 Day 3 — Strength (Upper Body Focus)</h4>
-<div class="fitness-section">
-<div class="fitness-exercise">□ Overhead press — 3 × 8–10</div>
-<div class="fitness-exercise">□ Pull-ups or lat pulldowns — 3 × 8–12</div>
-<div class="fitness-exercise">□ Dumbbell chest press — 3 × 10</div>
-<div class="fitness-exercise">□ Bicep curls — 2 × 12–15</div>
-<div class="fitness-exercise">□ Tricep extensions — 2 × 12–15</div>
-</div>
-</div>
-
-<div class="fitness-day">
-<h4>☀️ Day 4 — Rest or Active Recovery</h4>
-<div class="fitness-section">
-<div class="fitness-exercise">□ Easy walk</div>
-<div class="fitness-exercise">□ Light stretching</div>
-<div class="fitness-exercise">□ Mobility work</div>
-</div>
-</div>
-
-<div class="fitness-day">
-<h4>🦵 Day 5 — Strength (Lower Body Focus)</h4>
-<div class="fitness-section">
-<div class="fitness-exercise">□ Squats or leg press — 3 × 8–12</div>
-<div class="fitness-exercise">□ Lunges — 3 × 10 each leg</div>
-<div class="fitness-exercise">□ Deadlifts — 3 × 6–10</div>
-<div class="fitness-exercise">□ Calf raises — 3 × 12–15</div>
-</div>
-</div>
-
-<div class="fitness-day">
-<h4>⚡ Day 6 — Conditioning</h4>
-<div class="fitness-section">
-<div class="fitness-exercise">Choose one:</div>
-<div class="fitness-exercise" style="margin-left: 10px;">Option A: 45–60 minute easy cardio</div>
-<div class="fitness-exercise" style="margin-left: 10px;">Option B: 8 rounds of 30 sec hard + 90 sec easy</div>
-</div>
-</div>
-</div>
-
-Get after it! 💪`;
+            if (msg.includes('workout') || msg.includes('exercise')) {
+                return 'Let\'s get you strong! What\'s your goal - strength training, cardio, flexibility, or a mix? I can give you a personalized routine!';
             }
 
-            // Default response if no specific keywords match
-            return `Great question! Here are some things I can help you with:
-            
-• Ask for a "fitness plan" and I'll design a complete workout routine
-• Ask for a "low carb" diet and I'll give you a 7-day meal plan
-• Ask about workouts, exercises, nutrition, or training techniques
-• Get tips on building better habits and staying motivated
+            if (msg.includes('nutrition') || msg.includes('meal') || msg.includes('diet')) {
+                return 'Nutrition is key! Tell me more - are you looking for weight loss, muscle gain, or just eating healthier? I can create a meal plan for you!';
+            }
 
-What would you like help with today?`;
+            return 'Great question! I can help with: fitness plans, low-carb diets, workout routines, nutrition advice, and building better habits. What would you like?';
         }
+
+        console.log('Script loaded successfully');
     </script>
 </body>
 </html>
