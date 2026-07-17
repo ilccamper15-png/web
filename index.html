@@ -510,7 +510,7 @@
             'cut the carb'
         ];
 
-        // Returns a label string ready to embed in "your … meal plan" templates.
+        // Returns a label string ready to embed in "your ... meal plan" templates.
         // Trailing space is included so callers can write `${getMealPlanLabel()}meal plan`.
         function getMealPlanLabel() {
             return conversationState.lastPlanType === 'lowCarb' ? 'low-carb ' : '';
@@ -873,7 +873,7 @@ Lunch
 
 Pre-Practice Snack
 
-☐ Peanut butter (no crackers)
+☐ Celery with peanut butter (no crackers)
 
 Dinner
 
@@ -916,7 +916,7 @@ Hard-boiled eggs
 Cheese sticks
 Beef jerky
 Almonds, walnuts, or pistachios
-Peanut butter (no crackers)
+Celery or cucumber with peanut butter
 Celery or cucumber with cream cheese
 Greek yogurt (plain, unsweetened)
 Avocado`;
@@ -1053,7 +1053,7 @@ Avocado`;
         function isFollowUpMessage(msg) {
             const phrases = [
                 'wait', 'actually', 'change', 'modify', 'update', 'instead',
-                'make it', "i don't", "i'm not", "i'm a", 'without', 'remove',
+                'make it', 'without', 'remove',
                 'add more', 'can you change', 'can you update', 'can you modify'
             ];
             return phrases.some(p => msg.includes(p));
