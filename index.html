@@ -451,7 +451,7 @@
 
             <div class="info-section">
                 <h3>My Coaching Style</h3>
-                <p>I'm not the strict type, but I get my point across. My goal is to help you get fit, develop better habits, and leave the junk food behind. Let's work together to make you the best a[...]
+                <p>I'm not the strict type, but I get my point across. My goal is to help you get fit, develop better habits, and leave the junk food behind. Let's work together to make you the b[...]
             </div>
 
             <div class="info-section">
@@ -489,7 +489,7 @@
             </div>
 
             <div class="input-area">
-                <input type="text" id="userInput" placeholder="Ask Coach Jake anything..." autocomplete="off">
+                <input type="text" id="userInput" placeholder="Ask Coach Jake anything..." autocomplete="off" onkeypress="handleKeyPress(event)">
                 <button onclick="sendMessage()">Send</button>
             </div>
         </div>
@@ -499,7 +499,13 @@
         // Store conversation history
         let conversationHistory = [];
 
-        async function sendMessage() {
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function sendMessage() {
             const input = document.getElementById('userInput');
             const message = input.value.trim();
 
@@ -581,161 +587,9 @@
 <div class="low-carb-item">☐ Asparagus</div>
 <div class="low-carb-item">☐ Side salad</div>
 </div>
-
-<div class="low-carb-meal-section">
-<h4>📅 Day 2</h4>
-<strong>Breakfast</strong>
-<div class="low-carb-item">☐ Scrambled eggs</div>
-<div class="low-carb-item">☐ Bacon or turkey sausage</div>
-<div class="low-carb-item">☐ Avocado</div>
-
-<strong>Snack</strong>
-<div class="low-carb-item">☐ Mixed nuts</div>
-
-<strong>Lunch</strong>
-<div class="low-carb-item">☐ Turkey lettuce wraps</div>
-<div class="low-carb-item">☐ Cheese</div>
-<div class="low-carb-item">☐ Vegetables</div>
-
-<strong>Pre-Practice Snack</strong>
-<div class="low-carb-item">☐ Beef jerky + cheese</div>
-
-<strong>Dinner</strong>
-<div class="low-carb-item">☐ Beef or chicken taco bowl</div>
-<div class="low-carb-item">☐ Ground meat</div>
-<div class="low-carb-item">☐ Cheese</div>
-<div class="low-carb-item">☐ Lettuce</div>
-<div class="low-carb-item">☐ Salsa</div>
-<div class="low-carb-item">☐ Guacamole</div>
 </div>
 
-<div class="low-carb-meal-section">
-<h4>📅 Day 3</h4>
-<strong>Breakfast</strong>
-<div class="low-carb-item">☐ Greek yogurt</div>
-<div class="low-carb-item">☐ Walnuts</div>
-<div class="low-carb-item">☐ Berries</div>
-
-<strong>Snack</strong>
-<div class="low-carb-item">☐ Cheese stick</div>
-<div class="low-carb-item">☐ Almonds</div>
-
-<strong>Lunch</strong>
-<div class="low-carb-item">☐ Lean meatballs</div>
-<div class="low-carb-item">☐ Zucchini noodles</div>
-<div class="low-carb-item">☐ Side salad</div>
-
-<strong>Pre-Practice Snack</strong>
-<div class="low-carb-item">☐ Hard-boiled eggs</div>
-
-<strong>Dinner</strong>
-<div class="low-carb-item">☐ Chicken stir fry</div>
-<div class="low-carb-item">☐ Broccoli</div>
-<div class="low-carb-item">☐ Bell peppers</div>
-<div class="low-carb-item">☐ Mushrooms</div>
-</div>
-
-<div class="low-carb-meal-section">
-<h4>📅 Day 4</h4>
-<strong>Breakfast</strong>
-<div class="low-carb-item">☐ Omelet with eggs, cheese, spinach, and salsa</div>
-
-<strong>Snack</strong>
-<div class="low-carb-item">☐ Protein shake (low sugar)</div>
-
-<strong>Lunch</strong>
-<div class="low-carb-item">☐ Tuna or chicken salad</div>
-<div class="low-carb-item">☐ Lettuce wraps</div>
-
-<strong>Pre-Practice Snack</strong>
-<div class="low-carb-item">☐ Cheese + turkey slices</div>
-
-<strong>Dinner</strong>
-<div class="low-carb-item">☐ Turkey meatballs</div>
-<div class="low-carb-item">☐ Roasted cauliflower</div>
-<div class="low-carb-item">☐ Green beans</div>
-</div>
-
-<div class="low-carb-meal-section">
-<h4>📅 Day 5</h4>
-<strong>Breakfast</strong>
-<div class="low-carb-item">☐ Eggs</div>
-<div class="low-carb-item">☐ Bacon</div>
-<div class="low-carb-item">☐ Greek yogurt</div>
-
-<strong>Snack</strong>
-<div class="low-carb-item">☐ Pecans or walnuts</div>
-
-<strong>Lunch</strong>
-<div class="low-carb-item">☐ Chicken with vegetables</div>
-<div class="low-carb-item">☐ Greek yogurt</div>
-
-<strong>Pre-Practice Snack</strong>
-<div class="low-carb-item">☐ Beef jerky</div>
-
-<strong>Dinner</strong>
-<div class="low-carb-item">☐ Burger bowl</div>
-<div class="low-carb-item">☐ Lean beef</div>
-<div class="low-carb-item">☐ Lettuce</div>
-<div class="low-carb-item">☐ Tomato</div>
-<div class="low-carb-item">☐ Cheese</div>
-<div class="low-carb-item">☐ Pickles</div>
-<div class="low-carb-item">☐ Avocado</div>
-</div>
-
-<div class="low-carb-meal-section">
-<h4>📅 Day 6</h4>
-<strong>Breakfast</strong>
-<div class="low-carb-item">☐ Eggs</div>
-<div class="low-carb-item">☐ Cheese</div>
-<div class="low-carb-item">☐ Avocado</div>
-
-<strong>Snack</strong>
-<div class="low-carb-item">☐ Protein smoothie (unsweetened almond milk + protein powder)</div>
-
-<strong>Lunch</strong>
-<div class="low-carb-item">☐ Burrito bowl</div>
-<div class="low-carb-item">☐ Chicken</div>
-<div class="low-carb-item">☐ Cheese</div>
-<div class="low-carb-item">☐ Lettuce</div>
-<div class="low-carb-item">☐ Salsa</div>
-<div class="low-carb-item">☐ Guacamole</div>
-
-<strong>Pre-Practice Snack</strong>
-<div class="low-carb-item">☐ Turkey slices + cheese</div>
-
-<strong>Dinner</strong>
-<div class="low-carb-item">☐ Grilled chicken</div>
-<div class="low-carb-item">☐ Broccoli</div>
-<div class="low-carb-item">☐ Cauliflower</div>
-</div>
-
-<div class="low-carb-meal-section">
-<h4>📅 Day 7</h4>
-<strong>Breakfast</strong>
-<div class="low-carb-item">☐ Eggs</div>
-<div class="low-carb-item">☐ Greek yogurt</div>
-<div class="low-carb-item">☐ Berries</div>
-
-<strong>Snack</strong>
-<div class="low-carb-item">☐ Protein bar (low-carb) or peanut butter</div>
-
-<strong>Lunch</strong>
-<div class="low-carb-item">☐ Chicken salad</div>
-<div class="low-carb-item">☐ Olive oil dressing</div>
-<div class="low-carb-item">☐ Mixed vegetables</div>
-
-<strong>Pre-Practice Snack</strong>
-<div class="low-carb-item">☐ Cheese + nuts</div>
-
-<strong>Dinner</strong>
-<div class="low-carb-item">☐ Steak or tofu</div>
-<div class="low-carb-item">☐ Roasted Brussels sprouts</div>
-<div class="low-carb-item">☐ Side salad</div>
-</div>
-</div>
-
-This plan keeps your carbs under 50g per day while staying super high in protein. You'll stay full, energized, and lean. No bread, rice, pasta, or junk—just clean proteins, healthy fats, and veggies. This is the real deal! 💪`;
+This plan keeps your carbs under 50g per day while staying super high in protein. You'll stay full, energized, and lean!`;
             }
 
             // Low Carb Response
@@ -767,165 +621,13 @@ This plan keeps your carbs under 50g per day while staying super high in protein
 <div class="low-carb-item">☐ Asparagus</div>
 <div class="low-carb-item">☐ Side salad</div>
 </div>
-
-<div class="low-carb-meal-section">
-<h4>📅 Day 2</h4>
-<strong>Breakfast</strong>
-<div class="low-carb-item">☐ Scrambled eggs</div>
-<div class="low-carb-item">☐ Bacon or turkey sausage</div>
-<div class="low-carb-item">☐ Avocado</div>
-
-<strong>Snack</strong>
-<div class="low-carb-item">☐ Mixed nuts</div>
-
-<strong>Lunch</strong>
-<div class="low-carb-item">☐ Turkey lettuce wraps</div>
-<div class="low-carb-item">☐ Cheese</div>
-<div class="low-carb-item">☐ Vegetables</div>
-
-<strong>Pre-Practice Snack</strong>
-<div class="low-carb-item">☐ Beef jerky + cheese</div>
-
-<strong>Dinner</strong>
-<div class="low-carb-item">☐ Beef or chicken taco bowl</div>
-<div class="low-carb-item">☐ Ground meat</div>
-<div class="low-carb-item">☐ Cheese</div>
-<div class="low-carb-item">☐ Lettuce</div>
-<div class="low-carb-item">☐ Salsa</div>
-<div class="low-carb-item">☐ Guacamole</div>
 </div>
 
-<div class="low-carb-meal-section">
-<h4>📅 Day 3</h4>
-<strong>Breakfast</strong>
-<div class="low-carb-item">☐ Greek yogurt</div>
-<div class="low-carb-item">☐ Walnuts</div>
-<div class="low-carb-item">☐ Berries</div>
-
-<strong>Snack</strong>
-<div class="low-carb-item">☐ Cheese stick</div>
-<div class="low-carb-item">☐ Almonds</div>
-
-<strong>Lunch</strong>
-<div class="low-carb-item">☐ Lean meatballs</div>
-<div class="low-carb-item">☐ Zucchini noodles</div>
-<div class="low-carb-item">☐ Side salad</div>
-
-<strong>Pre-Practice Snack</strong>
-<div class="low-carb-item">☐ Hard-boiled eggs</div>
-
-<strong>Dinner</strong>
-<div class="low-carb-item">☐ Chicken stir fry</div>
-<div class="low-carb-item">☐ Broccoli</div>
-<div class="low-carb-item">☐ Bell peppers</div>
-<div class="low-carb-item">☐ Mushrooms</div>
-</div>
-
-<div class="low-carb-meal-section">
-<h4>📅 Day 4</h4>
-<strong>Breakfast</strong>
-<div class="low-carb-item">☐ Omelet with eggs, cheese, spinach, and salsa</div>
-
-<strong>Snack</strong>
-<div class="low-carb-item">☐ Protein shake (low sugar)</div>
-
-<strong>Lunch</strong>
-<div class="low-carb-item">☐ Tuna or chicken salad</div>
-<div class="low-carb-item">☐ Lettuce wraps</div>
-
-<strong>Pre-Practice Snack</strong>
-<div class="low-carb-item">☐ Cheese + turkey slices</div>
-
-<strong>Dinner</strong>
-<div class="low-carb-item">☐ Turkey meatballs</div>
-<div class="low-carb-item">☐ Roasted cauliflower</div>
-<div class="low-carb-item">☐ Green beans</div>
-</div>
-
-<div class="low-carb-meal-section">
-<h4>📅 Day 5</h4>
-<strong>Breakfast</strong>
-<div class="low-carb-item">☐ Eggs</div>
-<div class="low-carb-item">☐ Bacon</div>
-<div class="low-carb-item">☐ Greek yogurt</div>
-
-<strong>Snack</strong>
-<div class="low-carb-item">☐ Pecans or walnuts</div>
-
-<strong>Lunch</strong>
-<div class="low-carb-item">☐ Chicken with vegetables</div>
-<div class="low-carb-item">☐ Greek yogurt</div>
-
-<strong>Pre-Practice Snack</strong>
-<div class="low-carb-item">☐ Beef jerky</div>
-
-<strong>Dinner</strong>
-<div class="low-carb-item">☐ Burger bowl</div>
-<div class="low-carb-item">☐ Lean beef</div>
-<div class="low-carb-item">☐ Lettuce</div>
-<div class="low-carb-item">☐ Tomato</div>
-<div class="low-carb-item">☐ Cheese</div>
-<div class="low-carb-item">☐ Pickles</div>
-<div class="low-carb-item">☐ Avocado</div>
-</div>
-
-<div class="low-carb-meal-section">
-<h4>📅 Day 6</h4>
-<strong>Breakfast</strong>
-<div class="low-carb-item">☐ Eggs</div>
-<div class="low-carb-item">☐ Cheese</div>
-<div class="low-carb-item">☐ Avocado</div>
-
-<strong>Snack</strong>
-<div class="low-carb-item">☐ Protein smoothie (unsweetened almond milk + protein powder)</div>
-
-<strong>Lunch</strong>
-<div class="low-carb-item">☐ Burrito bowl</div>
-<div class="low-carb-item">☐ Chicken</div>
-<div class="low-carb-item">☐ Cheese</div>
-<div class="low-carb-item">☐ Lettuce</div>
-<div class="low-carb-item">☐ Salsa</div>
-<div class="low-carb-item">☐ Guacamole</div>
-
-<strong>Pre-Practice Snack</strong>
-<div class="low-carb-item">☐ Turkey slices + cheese</div>
-
-<strong>Dinner</strong>
-<div class="low-carb-item">☐ Grilled chicken</div>
-<div class="low-carb-item">☐ Broccoli</div>
-<div class="low-carb-item">☐ Cauliflower</div>
-</div>
-
-<div class="low-carb-meal-section">
-<h4>📅 Day 7</h4>
-<strong>Breakfast</strong>
-<div class="low-carb-item">☐ Eggs</div>
-<div class="low-carb-item">☐ Greek yogurt</div>
-<div class="low-carb-item">☐ Berries</div>
-
-<strong>Snack</strong>
-<div class="low-carb-item">☐ Protein bar (low-carb) or peanut butter</div>
-
-<strong>Lunch</strong>
-<div class="low-carb-item">☐ Chicken salad</div>
-<div class="low-carb-item">☐ Olive oil dressing</div>
-<div class="low-carb-item">☐ Mixed vegetables</div>
-
-<strong>Pre-Practice Snack</strong>
-<div class="low-carb-item">☐ Cheese + nuts</div>
-
-<strong>Dinner</strong>
-<div class="low-carb-item">☐ Steak or tofu</div>
-<div class="low-carb-item">☐ Roasted Brussels sprouts</div>
-<div class="low-carb-item">☐ Side salad</div>
-</div>
-</div>
-
-This low-carb plan is designed to keep you lean, energized, and performing at your peak. Focus on proteins, healthy fats, and veggies—skip the bread and pasta. You'll feel stronger and recover faster! Stay hydrated and crush it! 💪`;
+This low-carb plan is designed to keep you lean, energized, and performing at your peak. Focus on proteins, healthy fats, and veggies!`;
             }
 
             // Fitness Plan Response
-            if (lowerMessage.includes('make me a fitness plan')) {
+            if (lowerMessage.includes('make me a fitness plan') || lowerMessage.includes('fitness plan')) {
                 return `Perfect! Here's your complete 7-day fitness plan to dominate and get in peak shape:
 
 <div class="fitness-plan">
@@ -946,11 +648,7 @@ This low-carb plan is designed to keep you lean, energized, and performing at yo
 <h4>🏃 Day 2 — Cardio + Mobility</h4>
 <div class="fitness-section">
 <div class="fitness-exercise">□ 30–45 minutes: brisk walking, cycling, jogging, or swimming</div>
-<div class="fitness-exercise">□ 10 minutes stretching:</div>
-<div class="fitness-exercise" style="margin-left: 20px;">• Hip flexors</div>
-<div class="fitness-exercise" style="margin-left: 20px;">• Hamstrings</div>
-<div class="fitness-exercise" style="margin-left: 20px;">• Chest</div>
-<div class="fitness-exercise" style="margin-left: 20px;">• Shoulders</div>
+<div class="fitness-exercise">□ 10 minutes stretching</div>
 </div>
 </div>
 
@@ -962,7 +660,6 @@ This low-carb plan is designed to keep you lean, energized, and performing at yo
 <div class="fitness-exercise">□ Dumbbell chest press — 3 × 10</div>
 <div class="fitness-exercise">□ Bicep curls — 2 × 12–15</div>
 <div class="fitness-exercise">□ Tricep extensions — 2 × 12–15</div>
-<div class="fitness-exercise">□ Core: dead bugs or leg raises — 3 sets</div>
 </div>
 </div>
 
@@ -982,7 +679,6 @@ This low-carb plan is designed to keep you lean, energized, and performing at yo
 <div class="fitness-exercise">□ Lunges — 3 × 10 each leg</div>
 <div class="fitness-exercise">□ Deadlifts — 3 × 6–10</div>
 <div class="fitness-exercise">□ Calf raises — 3 × 12–15</div>
-<div class="fitness-exercise">□ Core: side plank — 3 × 30 seconds each side</div>
 </div>
 </div>
 
@@ -991,362 +687,24 @@ This low-carb plan is designed to keep you lean, energized, and performing at yo
 <div class="fitness-section">
 <div class="fitness-exercise">Choose one:</div>
 <div class="fitness-exercise" style="margin-left: 10px;">Option A: 45–60 minute easy cardio</div>
-<div class="fitness-exercise" style="margin-left: 10px;">Option B: Intervals:</div>
-<div class="fitness-exercise" style="margin-left: 30px;">• 5 min warm-up</div>
-<div class="fitness-exercise" style="margin-left: 30px;">• 8 rounds: 30 sec hard + 90 sec easy</div>
-<div class="fitness-exercise" style="margin-left: 30px;">• 5 min cool-down</div>
+<div class="fitness-exercise" style="margin-left: 10px;">Option B: 8 rounds of 30 sec hard + 90 sec easy</div>
+</div>
 </div>
 </div>
 
-<div class="fitness-day">
-<h4>😴 Day 7 — Rest</h4>
-<div class="fitness-section">
-<div class="fitness-exercise">□ Complete rest or light stretching</div>
-<div class="fitness-exercise">□ Focus on recovery</div>
-</div>
-</div>
-
-<div class="daily-habits">
-<p><strong>📌 DAILY HABITS TO FOLLOW:</strong></p>
-<p>□ <strong>Protein:</strong> Include a protein source at each meal</p>
-<p>□ <strong>Water:</strong> Aim for steady hydration throughout the day</p>
-<p>□ <strong>Sleep:</strong> Target 7–9 hours</p>
-<p>□ <strong>Steps:</strong> Aim for 7,000–10,000 daily if possible</p>
-<p>□ <strong>Progress:</strong> Increase weight, reps, or duration gradually each week</p>
-</div>
-</div>
-
-This is a balanced program designed to build strength, improve conditioning, and keep you healthy. Stick with it for 4-6 weeks and you'll see massive improvements! Remember—consistency is key. [...]
+Get after it! 💪`;
             }
 
-            // Meal Plan Response
-            if (lowerMessage.includes('make me a meal plan')) {
-                return `Alright! Here's your 7-day meal plan to fuel your body and level up your game:
+            // Default response if no specific keywords match
+            return `Great question! Here are some things I can help you with:
+            
+• Ask for a "fitness plan" and I'll design a complete workout routine
+• Ask for a "low carb" diet and I'll give you a 7-day meal plan
+• Ask about workouts, exercises, nutrition, or training techniques
+• Get tips on building better habits and staying motivated
 
-<div class="meal-plan">
-<div class="meal-day">
-<h4>📅 Day 1</h4>
-<div class="meal-section">
-<strong>Breakfast:</strong><br/>
-□ Oatmeal with milk, banana, berries, and peanut butter<br/>
-□ 2 eggs
-</div>
-<div class="meal-section">
-<strong>Snack:</strong><br/>
-□ Greek yogurt + granola
-</div>
-<div class="meal-section">
-<strong>Lunch:</strong><br/>
-□ Chicken rice bowl: Grilled chicken, Brown rice, Vegetables, Avocado
-</div>
-<div class="meal-section">
-<strong>Pre-Practice Snack:</strong><br/>
-□ Banana + peanut butter toast
-</div>
-<div class="meal-section">
-<strong>Dinner:</strong><br/>
-□ Salmon, Sweet potato, Broccoli, Milk
-</div>
-</div>
-
-<div class="meal-day">
-<h4>📅 Day 2</h4>
-<div class="meal-section">
-<strong>Breakfast:</strong><br/>
-□ Whole grain toast, Scrambled eggs, Fruit smoothie
-</div>
-<div class="meal-section">
-<strong>Snack:</strong><br/>
-□ Trail mix + fruit
-</div>
-<div class="meal-section">
-<strong>Lunch:</strong><br/>
-□ Turkey sandwich: Whole grain bread, Turkey, Cheese, Vegetables, Side fruit
-</div>
-<div class="meal-section">
-<strong>Pre-Practice Snack:</strong><br/>
-□ Applesauce + granola bar
-</div>
-<div class="meal-section">
-<strong>Dinner:</strong><br/>
-□ Beef or chicken tacos: Lean protein, Tortillas, Beans, Vegetables
-</div>
-</div>
-
-<div class="meal-day">
-<h4>📅 Day 3</h4>
-<div class="meal-section">
-<strong>Breakfast:</strong><br/>
-□ Greek yogurt parfait: Yogurt, Fruit, Granola, Nuts
-</div>
-<div class="meal-section">
-<strong>Snack:</strong><br/>
-□ Cheese stick + crackers
-</div>
-<div class="meal-section">
-<strong>Lunch:</strong><br/>
-□ Pasta with: Lean meat sauce, Vegetables, Side salad
-</div>
-<div class="meal-section">
-<strong>Pre-Practice Snack:</strong><br/>
-□ Peanut butter sandwich
-</div>
-<div class="meal-section">
-<strong>Dinner:</strong><br/>
-□ Chicken stir fry: Chicken, Rice, Mixed vegetables
-</div>
-</div>
-
-<div class="meal-day">
-<h4>📅 Day 4</h4>
-<div class="meal-section">
-<strong>Breakfast:</strong><br/>
-□ Breakfast burrito: Eggs, Cheese, Beans, Salsa, Tortilla
-</div>
-<div class="meal-section">
-<strong>Snack:</strong><br/>
-□ Smoothie: Milk, Banana, Protein source, Berries
-</div>
-<div class="meal-section">
-<strong>Lunch:</strong><br/>
-□ Tuna/chicken salad wrap, Fruit
-</div>
-<div class="meal-section">
-<strong>Pre-Practice Snack:</strong><br/>
-□ Pretzels + sports drink (if intense training)
-</div>
-<div class="meal-section">
-<strong>Dinner:</strong><br/>
-□ Turkey meatballs, Pasta, Vegetables
-</div>
-</div>
-
-<div class="meal-day">
-<h4>📅 Day 5</h4>
-<div class="meal-section">
-<strong>Breakfast:</strong><br/>
-□ Pancakes or waffles, Eggs, Fruit
-</div>
-<div class="meal-section">
-<strong>Snack:</strong><br/>
-□ Nuts + fruit
-</div>
-<div class="meal-section">
-<strong>Lunch:</strong><br/>
-□ Chicken quesadilla, Vegetables, Yogurt
-</div>
-<div class="meal-section">
-<strong>Pre-Practice Snack:</strong><br/>
-□ Banana + granola bar
-</div>
-<div class="meal-section">
-<strong>Dinner:</strong><br/>
-□ Burger bowl: Lean beef/turkey burger, Potatoes, Vegetables
-</div>
-</div>
-
-<div class="meal-day">
-<h4>📅 Day 6</h4>
-<div class="meal-section">
-<strong>Breakfast:</strong><br/>
-□ Oatmeal, Eggs, Fruit
-</div>
-<div class="meal-section">
-<strong>Snack:</strong><br/>
-□ Smoothie
-</div>
-<div class="meal-section">
-<strong>Lunch:</strong><br/>
-□ Burrito bowl: Chicken, Rice, Beans, Salsa, Cheese
-</div>
-<div class="meal-section">
-<strong>Pre-Practice Snack:</strong><br/>
-□ Toast with honey
-</div>
-<div class="meal-section">
-<strong>Dinner:</strong><br/>
-□ Grilled chicken, Rice, Vegetables
-</div>
-</div>
-
-<div class="meal-day">
-<h4>📅 Day 7</h4>
-<div class="meal-section">
-<strong>Breakfast:</strong><br/>
-□ French toast, Fruit, Yogurt
-</div>
-<div class="meal-section">
-<strong>Snack:</strong><br/>
-□ Protein bar or peanut butter snack
-</div>
-<div class="meal-section">
-<strong>Lunch:</strong><br/>
-□ Pasta salad: Pasta, Chicken, Vegetables, Olive oil dressing
-</div>
-<div class="meal-section">
-<strong>Pre-Practice Snack:</strong><br/>
-□ Fruit + crackers
-</div>
-<div class="meal-section">
-<strong>Dinner:</strong><br/>
-□ Steak or tofu, Potatoes, Vegetables
-</div>
-</div>
-</div>
-
-This plan is designed to keep you energized before practice, help you recover after, and support your overall athletic performance. Drink plenty of water throughout the day—at least 2-3 liters! 💪[...]
-            }
-
-            // Workout responses
-            if (lowerMessage.includes('workout') || lowerMessage.includes('exercise') || lowerMessage.includes('training')) {
-                return `Great question! Here's a solid workout for you:
-
-<div class="checklist">
-<div class="checklist-item">
-<input type="checkbox"> Warm-up: 5 min light jog + dynamic stretches
-</div>
-<div class="checklist-item">
-<input type="checkbox"> 10 push-ups (3 sets)
-</div>
-<div class="checklist-item">
-<input type="checkbox"> 15 squats (3 sets)
-</div>
-<div class="checklist-item">
-<input type="checkbox"> 20 jumping jacks (3 sets)
-</div>
-<div class="checklist-item">
-<input type="checkbox"> 30-sec plank (3 sets)
-</div>
-<div class="checklist-item">
-<input type="checkbox"> Cool down: 5 min walk + static stretches
-</div>
-</div>
-
-This will build your strength and endurance. Do this 3-4 times a week with rest days in between. You'll see improvements in your soccer performance in no time!`;
-            }
-
-            // Nutrition responses
-            if (lowerMessage.includes('eat') || lowerMessage.includes('food') || lowerMessage.includes('nutrition') || lowerMessage.includes('diet')) {
-                return `Solid question! Fueling your body right is crucial for peak performance:
-
-<div class="checklist">
-<div class="checklist-item">
-<input type="checkbox"> Eat: Chicken breast, brown rice, and broccoli
-</div>
-<div class="checklist-item">
-<input type="checkbox"> Eat: Bananas and almonds for snacks
-</div>
-<div class="checklist-item">
-<input type="checkbox"> Avoid: Fast food and sugary drinks
-</div>
-<div class="checklist-item">
-<input type="checkbox"> Avoid: Chips and processed snacks
-</div>
-<div class="checklist-item">
-<input type="checkbox"> Drink: At least 2-3 liters of water daily
-</div>
-<div class="checklist-item">
-<input type="checkbox"> Track: Keep a food journal for 2 weeks
-</div>
-</div>
-
-Good nutrition is 80% of the game. You'll feel faster, stronger, and more focused on the field!`;
-            }
-
-            // Soccer-specific responses
-            if (lowerMessage.includes('soccer') || lowerMessage.includes('football') || lowerMessage.includes('ball')) {
-                return `Ah, a fellow soccer enthusiast! Here's how to improve your game:
-
-<div class="checklist">
-<div class="checklist-item">
-<input type="checkbox"> Work on agility: cone drills 2x per week
-</div>
-<div class="checklist-item">
-<input type="checkbox"> Build leg strength: lunges and wall sits
-</div>
-<div class="checklist-item">
-<input type="checkbox"> Increase endurance: interval running
-</div>
-<div class="checklist-item">
-<input type="checkbox"> Practice ball control: 20 mins daily
-</div>
-<div class="checklist-item">
-<input type="checkbox"> Work on core: planks and Russian twists
-</div>
-<div class="checklist-item">
-<input type="checkbox"> Play matches: At least once per week
-</div>
-</div>
-
-I trained at Liverpool's U19 academy, and trust me—consistency and dedication are what separate good players from great ones. You've got this!`;
-            }
-
-            // General motivation
-            if (lowerMessage.includes('motivation') || lowerMessage.includes('tired') || lowerMessage.includes('hard')) {
-                return `I hear you! Here's what you need to do:
-
-<div class="checklist">
-<div class="checklist-item">
-<input type="checkbox"> Remember why you started
-</div>
-<div class="checklist-item">
-<input type="checkbox"> Focus on small daily wins
-</div>
-<div class="checklist-item">
-<input type="checkbox"> Get 8 hours of sleep
-</div>
-<div class="checklist-item">
-<input type="checkbox"> Fuel your body properly
-</div>
-<div class="checklist-item">
-<input type="checkbox"> Train with friends for accountability
-</div>
-<div class="checklist-item">
-<input type="checkbox"> Celebrate your progress
-</div>
-</div>
-
-Listen, every athlete feels burnt out sometimes. That's normal. But the ones who push through that feeling are the ones who make it to the next level. You're tougher than you think!`;
-            }
-
-            // Default response
-            return `That's a great question! Here's my advice:
-
-<div class="checklist">
-<div class="checklist-item">
-<input type="checkbox"> Set a clear goal
-</div>
-<div class="checklist-item">
-<input type="checkbox"> Create an action plan
-</div>
-<div class="checklist-item">
-<input type="checkbox"> Stay consistent
-</div>
-<div class="checklist-item">
-<input type="checkbox"> Track your progress
-</div>
-<div class="checklist-item">
-<input type="checkbox"> Adjust as needed
-</div>
-<div class="checklist-item">
-<input type="checkbox"> Celebrate wins along the way
-</div>
-</div>
-
-Whether it's fitness, nutrition, or soccer training—this formula works for everything. Tell me specifically what you want to improve, and I'll give you a detailed plan!`;
+What would you like help with today?`;
         }
-
-        // Allow Enter key to send message
-        document.getElementById('userInput').addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
-                sendMessage();
-            }
-        });
-
-        // Initial greeting
-        window.addEventListener('load', function() {
-            console.log('Coach Jake chatbot loaded!');
-        });
     </script>
 </body>
 </html>
